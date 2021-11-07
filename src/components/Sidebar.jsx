@@ -15,8 +15,8 @@ const SidebarLinks = () => {
 const Logo = () => {
   return (
     <div className='py-3 w-full flex flex-col items-center justify-center'>
-      <img src='logo.png' alt='Logo' className='h-16' />
-      <span className='my-2 text-xl font-bold text-center'>Título de Mi Aplicación</span>
+      <img src='logo.png' alt='Logo' className='h-30' />
+      <span className='my-2 text-xl font-bold text-center text-white '>Gestor de Proyectos CODEX</span>
     </div>
   );
 };
@@ -33,7 +33,7 @@ const Sidebar = () => {
           <SidebarLinks />
         </div>
       </div>
-      <div className='flex md:hidden w-full justify-between bg-gray-800 p-2 text-white'>
+      <div className='flex md:hidden w-full justify-between bg-cafe p-2 text-white'>
         <i className={`fas fa-${open ? 'times' : 'bars'}`} onClick={() => setOpen(!open)} />
         <i className='fas fa-home' />
       </div>
@@ -66,8 +66,8 @@ const SidebarRoute = ({ to, title, icon }) => {
         to={to}
         className={({ isActive }) =>
           isActive
-            ? 'sidebar-route text-white bg-indigo-700'
-            : 'sidebar-route text-gray-900 hover:text-white hover:bg-indigo-400'
+            ? 'sidebar-route text-white bg-verdeAzul-dark'
+            : 'sidebar-route text-white hover:text-white hover:bg-verdeAzul-dark'
         }
       >
         <div className='flex items-center'>

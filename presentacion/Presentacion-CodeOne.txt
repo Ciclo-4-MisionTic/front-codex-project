@@ -1,9 +1,12 @@
 Presentación de los miembros del equipo con sus roles 
 
-Mi nombre es Valeria Herrera Giraldo tengo 22 años, actualmente soy estudiante de matemáticas en la Universidad Nacional de Colombia, En este ciclo el rol que desempeñare será de Scrum Master.
+Mi nombre es Valeria Herrera Giraldo tengo 22 años, actualmente soy estudiante de matemáticas en la Universidad Nacional de Colombia, En este ciclo el rol que desempeñare será de Scrum Maste
+
+Mi nombre es Juan Jose Montoya Hernandez, tengo 23 años, actualmente soy estudiante de ingenieria en sistemas, en este ciclo el rol que desempeñare será como Analyst.
+
+Mi nombre  es  Sofia Botero Pavas , tengo 22 años, actualmente soy estudiante de matemáticas , en este  ciclo me desempeñare como desarrolladora 
 
 Mi nombre es Erika Yuliana Vargas Hurtado, tengo 26 años, actualmente soy estudiante de la carrera matemáticas en la Universidad Nacional de Colombia , en este ciclo me desempeñare como product owner.
 
-Mi nombre es Juan Jose Montoya Hernandez, tengo 23 años, actualmente soy estudiante de ingenieria en sistemas en el Tecnologico de Antioquia, en este ciclo el rol que desempeñare sera de Analyst.
-
 Mi nombre es Valeria Restrepo Lozano, tengo 22 años, soy estudiantes de matemáticas en la Universidad Nacional de Colombia, mi rol es Desarrolladora.
+

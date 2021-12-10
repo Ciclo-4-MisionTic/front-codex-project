@@ -8,7 +8,7 @@ import useFormData from 'hooks/useFormData';
 import { toast } from 'react-toastify';
 import { EDITAR_USUARIO } from 'graphql/usuarios/mutations';
 import DropDown from 'components/Dropdown';
-import { Enum_EstadoUsuario } from 'utils/enum';
+import { Enum_EstadoUsuario } from 'utils/enums';
 
 const EditarUsuario = () => {
 
@@ -58,9 +58,9 @@ const EditarUsuario = () => {
     return (
         <div className='flew flex-col w-full h-full items-center justify-center p-10'>
         <Link to='/usuarios'>
-          <i className='fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900' />
+          <i className='fas fa-arrow-left flechaRegresar' />
         </Link>
-        <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>Editar Usuario</h1>
+        <h1 className='titulo'>Editar Usuario</h1>
         <form
           onSubmit={submitForm}
           onChange={updateFormData}
@@ -96,7 +96,7 @@ const EditarUsuario = () => {
             required={true}
           />
         
-          <DropDown
+          <DropDown 
             label='Estado de la persona:'
             name='estado'
             defaultValue={queryData.Usuario.estado}

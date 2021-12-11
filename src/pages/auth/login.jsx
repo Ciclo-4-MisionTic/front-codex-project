@@ -34,8 +34,11 @@ const Login = () => {
           }
       }
   },[dataMutation, setToken, navigate])
+
+  
     
     return (
+      
         <div className='flex flex-col items-center justify-center w-full h-full p-10'>
         <h1 className='titulo'>Iniciar sesión</h1>
         <form className='flex flex-col' onSubmit={submitForm} onChange={updateFormData} ref={form}>
@@ -47,9 +50,9 @@ const Login = () => {
             text='Iniciar Sesión'
           />
         </form>
-        <span>¿No tienes una cuenta?</span>
+        <span className='subTitulo'>¿No tienes una cuenta?</span>
         <Link to='/auth/register'>
-          <span className='text-blue-700'>Regístrate</span>
+          <span className='subTitulo'>Regístrate</span>
         </Link>
       </div>
     )

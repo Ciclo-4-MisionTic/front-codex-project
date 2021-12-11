@@ -18,6 +18,10 @@
   @apply m-4 text-3xl text-moradoOscuro-dark font-bold text-center
 }
 
+.subTitulo {
+  @apply m-4 text-sm text-moradoOscuro-dark font-semibold text-center
+}
+
 .flechaRegresar{
   @apply text-moradoClaro-dark cursor-pointer font-bold text-xl hover:text-moradoOscuro-dark
 }

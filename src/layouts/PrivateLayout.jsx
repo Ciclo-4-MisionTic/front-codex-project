@@ -8,6 +8,7 @@ import { REFRESH_TOKEN } from 'graphql/auth/mutations';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import PrivateRoute from 'components/PrivateRoute';
 
 
 const PrivateLayout = () => {

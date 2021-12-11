@@ -26,7 +26,6 @@ const Login = () => {
     };
 
     useEffect(()=> {
-      console.log("data mutation", dataMutation);
       if(dataMutation){
           if(dataMutation.login.token){
               setToken(dataMutation.login.token);

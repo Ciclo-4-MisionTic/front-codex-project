@@ -29,7 +29,6 @@ const EditarUsuario = () => {
     
     const submitForm = (e)=>{
         e.preventDefault();
-        console.log('fd',formData);
         delete formData.rol; 
         editarUsuario({ 
             variables: {_id,...formData},
@@ -50,7 +49,7 @@ const EditarUsuario = () => {
         if(mutationData){
             toast.success("Usuario modificado correctamente")
         }
-        console.log("mutacion edicion", mutationData)
+
     },[mutationData]);
     
     if(queryLoading) return <div>Cargando....</div>;

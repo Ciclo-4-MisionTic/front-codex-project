@@ -19,6 +19,15 @@ const PrivateLayout = () => {
     refreshToken()
   },[]);
 
+  useEffect(()=>{
+    console.log("DM", dataMutation);
+    if(dataMutation){
+      if(dataMutation.refreshToken.token){
+        setToken(dataMutation.refreshToken.token);
+      }
+    }
+  },[dataMutation]);
+
   return (
     <div className='flex flex-col md:flex-row flex-no-wrap h-screen'>
       <Sidebar />

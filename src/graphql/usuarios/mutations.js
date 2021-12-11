@@ -8,25 +8,25 @@ mutation EditarUsuario(
     $identificacion: String!
     $correo: String!
     $estado: Enum_EstadoUsuario!
-) {
+  ) {
     editarUsuario(
-        _id: $_id
-        nombre: $nombre
-        apellido: $apellido
-        identificacion: $identificacion
-        correo: $correo
-        estado: $estado
+      _id: $_id
+      nombre: $nombre
+      apellido: $apellido
+      identificacion: $identificacion
+      correo: $correo
+      estado: $estado
     ) {
-        _id
-        nombre
-        apellido
-        correo
-        estado
-        identificacion
-        rol
+      _id
+      nombre
+      apellido
+      correo
+      estado
+      identificacion
+      rol
 
     }
-}
+  }
 `;
 
 export { EDITAR_USUARIO }

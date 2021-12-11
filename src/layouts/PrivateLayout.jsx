@@ -2,9 +2,30 @@ import Sidebar from 'components/Sidebar';
 import { Outlet } from 'react-router';
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
+import { useMutation } from '@apollo/client';
+import { useAuth } from 'context/authContext';
+import { REFRESH_TOKEN } from 'graphql/auth/mutations';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
+
 
 const PrivateLayout = () => {
+
+  const { authToken, setToken, loadingAuth } = useAuth();
+
+  const [refreshToken, { data: dataMutation, loading: loadingMutation, error: errorMutation }] =
+  useMutation(REFRESH_TOKEN);
+
+  useEffect(()=>{
+    refreshToken()
+  },[]);
+
+  useEffect(() => {
+    if (dataMutation) {
+      console.log('dm', dataMutation);
+    }
+  }, [dataMutation]);
+
   return (
     <div className='flex flex-col md:flex-row flex-no-wrap h-screen'>
       <Sidebar />

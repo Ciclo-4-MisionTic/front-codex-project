@@ -15,10 +15,10 @@ const Login = () => {
     const {form, formData, updateFormData } = useFormData();
 
     const [login, {data:dataMutation, loading:mutationLoading, error:mutationError}] = 
-    useMutation(LOGIN)
+      useMutation(LOGIN)
 
     const submitForm = (e) => {
-        e.preventDefault();
+      e.preventDefault();
 
         login({
             variables: formData,

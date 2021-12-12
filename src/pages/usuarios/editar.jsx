@@ -49,7 +49,7 @@ const EditarUsuario = () => {
         if(mutationData){
             toast.success("Usuario modificado correctamente")
         }
-        console.log("mutacion edicion", mutationData)
+
     },[mutationData]);
     
     if(queryLoading) return <div>Cargando....</div>;

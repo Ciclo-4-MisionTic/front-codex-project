@@ -24,7 +24,7 @@ const PrivateLayout = () => {
 
   useEffect(() => {
     if (dataMutation) {
-      console.log('DM', dataMutation);
+
       if(dataMutation.refreshToken.token){
         setToken(dataMutation.refreshToken.token);
       }

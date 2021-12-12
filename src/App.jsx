@@ -46,11 +46,14 @@ function App() {
   const [authToken, setAuthToken] = useState ('');
 
   const setToken = (token) =>{
+    console.log('set token', token);
     setAuthToken(token)
     if(token){
       localStorage.setItem('token', JSON.stringify(token));
+    }else{
+      localStorage.removeItem('token');
     }
-  }
+  };
 
   return (
     <ApolloProvider client = {client}>

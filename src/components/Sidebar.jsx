@@ -1,3 +1,4 @@
+import { useAuth } from 'context/authContext';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
@@ -9,15 +10,34 @@ const SidebarLinks = () => {
       <SidebarRoute to='/page2' title='Pagina2' icon='fas fa-smile-wink' />
       <SidebarRoute to='/category1' title='Catego 1' icon='fab fa-amazon' />
       <SidebarRoute to='/category1/page1' title='Test' icon='fas fa-car' />
+      <Logout />
     </ul>
+  );
+};
+
+const Logout = () => {
+  const { setToken } = useAuth();
+  const deleteToken = () => {
+    console.log('Eliminar token');
+    setToken(null);
+  };
+  return (
+    <li onClick={() => deleteToken()} >
+      <NavLink to='/auth/login' className='sidebar-route text-cafe-dark'>
+        <div className='flex items-center' >
+          <i className='fas fa-sign-out-alt' />
+          <span className='text-sm  ml-2'>Cerrar Sesión</span>
+        </div>
+      </NavLink>
+    </li>
   );
 };
 
 const Logo = () => {
   return (
     <div className='py-3 w-full flex flex-col items-center justify-center'>
-      <img src='logo.png' alt='Logo' className='h-30' />
-      <span className='my-2 text-xl font-bold text-center text-white '>Gestor de Proyectos CODEX</span>
+      <img src='logo.png' alt='Logo' className='h-29' />
+      <span className='my-2 text-gl font-bold text-center text-white '>Gestor de Proyectos CODEX</span>
     </div>
   );
 };
@@ -29,7 +49,7 @@ const Sidebar = () => {
       {/* Sidebar starts */}
 
       <div className='sidebar hidden md:flex'>
-        <div className='px-8'>
+        <div className='px-12'>
           <Logo />
           <SidebarLinks />
         </div>

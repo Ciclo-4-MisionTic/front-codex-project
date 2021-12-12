@@ -16,34 +16,38 @@ module.exports = {
       
       moradoClaro: {
         light: '#D9BFC4',
-        DEFAULT: '#8C515C',
+        default: '#8C515C',
         dark: '#59343B',
       },
 
       moradoOscuro: {
         light: '#66385B',
-        DEFAULT: '#59314F',
+        default: '#59314F',
         dark: '#402339',
       },
       verdeAzul: {
         light: '#D5F2F2',
-        DEFAULT: '#60A6A6',
+        default: '#60A6A6',
         dark: '#437373',
       },
       azul: {
         light: '#6BF2E5',
-        DEFAULT: '#5FD9CD',
+        default: '#5FD9CD',
         dark: '#4FB3A9',
       },
       cafe: {
         light: '#B38062',
-        DEFAULT: '#A6775B',
+        default: '#A6775B',
         dark: '#664938',
       },
     }
   },
   variants: {
-    extend: {},
+    extend: {
+      opacity: ['disabled'],
+      backgroundColor: ['disabled'],
+      textColor: ['disabled'],
+    },
   },
   plugins: [],
 

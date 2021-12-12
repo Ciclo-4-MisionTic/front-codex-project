@@ -3,9 +3,29 @@
 @tailwind utilities;
 
 .sidebar {
-  @apply w-64 bg-verdeAzul shadow flex-col justify-between;
+  @apply w-64 bg-verdeAzul-default shadow flex-col justify-between;
 }
 
 .sidebar-route {
   @apply rounded-md flex w-full justify-between cursor-pointer items-center m-3 p-3;
+}
+
+.input {
+  @apply p-2 border border-moradoClaro-light focus:outline-none focus:border-moradoClaro-dark rounded-md shadow-sm;
+}
+
+.titulo {
+  @apply m-4 text-3xl text-moradoOscuro-dark font-bold text-center
+}
+
+.subTitulo {
+  @apply m-4 text-sm text-moradoOscuro-dark font-semibold text-center
+}
+
+.flechaRegresar{
+  @apply text-moradoClaro-dark cursor-pointer font-bold text-xl hover:text-moradoOscuro-dark
+}
+
+.lapizEditar{
+  @apply text-moradoOscuro-dark hover:text-moradoOscuro-light cursor-pointer
 }

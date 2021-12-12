@@ -1,3 +1,4 @@
+import { useAuth } from 'context/authContext';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from 'context/authContext';
@@ -21,13 +22,13 @@ const SidebarLinks = () => {
 const Logout = () => {
   const { setToken } = useAuth();
   const deleteToken = () => {
-    console.log('eliminar token');
+    console.log('Eliminar token');
     setToken(null);
   };
   return (
-    <li onClick={() => deleteToken()}>
-      <NavLink to='/auth/login' className='sidebar-route text-red-700'>
-        <div className='flex items-center'>
+    <li onClick={() => deleteToken()} >
+      <NavLink to='/auth/login' className='sidebar-route text-moradoOscuro-dark'>
+        <div className='flex items-center' >
           <i className='fas fa-sign-out-alt' />
           <span className='text-sm  ml-2'>Cerrar Sesión</span>
         </div>
@@ -40,8 +41,8 @@ const Logout = () => {
 const Logo = () => {
   return (
     <div className='py-3 w-full flex flex-col items-center justify-center'>
-      <img src='logo.png' alt='Logo' className='h-30' />
-      <span className='my-2 text-xl font-bold text-center text-white '>Gestor de Proyectos CODEX</span>
+      <img src='logo.png' alt='Logo' className='h-29' />
+      <span className='my-2 text-gl font-bold text-center text-white '>Gestor de Proyectos CODEX</span>
     </div>
   );
 };
@@ -53,7 +54,7 @@ const Sidebar = () => {
       {/* Sidebar starts */}
 
       <div className='sidebar hidden md:flex'>
-        <div className='px-8'>
+        <div className='px-12'>
           <Logo />
           <SidebarLinks />
         </div>

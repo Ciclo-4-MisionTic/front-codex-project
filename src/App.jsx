@@ -50,29 +50,28 @@ function App() {
   const [authToken, setAuthToken] = useState ('');
 
   const setToken = (token) =>{
-    console.log('set token', token)
+    console.log('set token', token);
     setAuthToken(token)
     if(token){
       localStorage.setItem('token', JSON.stringify(token));
     }else{
-      localStorage.removeItem('token')
+      localStorage.removeItem('token');
     }
   };
 
-  useEffect(()=>{
-    if(authToken){
-      const decoded = jwt_decode(authToken)
-      console.log("ESTE ES", decoded)
+  useEffect(() => {
+    if (authToken){
+      const decode = jwt_decode(authToken);
       setUserData({
-        _id: decoded._id,
-        nombre:decoded.nombre,
-        apellido:decoded.apellido,
-        identificacion: decoded.identificacion,
-        correo: decoded.correo,
-        rol: decoded.rol, 
+        _id: decode._id,
+        nombre: decode.nombre,
+        apellido: decode.apellido,
+        indetificacion: decode.indetificacion,
+        correo : decode.correo,
+        rol: decode.rol,
       })
     }
-  },[authToken])
+  },[authToken]);
 
   return (
     <ApolloProvider client = {client}>

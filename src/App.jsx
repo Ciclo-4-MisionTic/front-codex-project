@@ -20,12 +20,12 @@ import jwt_decode from 'jwt-decode';
 
 // import PrivateRoute from 'components/PrivateRoute';
 
-// const httpLink = createHttpLink({
-//   uri: "https://codex-project1.herokuapp.com/graphql",
-// });
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/graphql",
+  uri: "https://codex-project1.herokuapp.com/graphql",
 });
+// const httpLink = createHttpLink({
+//   uri: "http://localhost:4000/graphql",
+// });
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists

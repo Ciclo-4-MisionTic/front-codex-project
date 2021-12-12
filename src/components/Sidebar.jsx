@@ -1,7 +1,6 @@
 import { useAuth } from 'context/authContext';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useAuth } from 'context/authContext';
 import PrivateComponent from './PrivateComponent';
 
 const SidebarLinks = () => {

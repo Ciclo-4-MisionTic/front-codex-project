@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PrivateLayout from 'layouts/PrivateLayout';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserContext } from 'context/userContext';
@@ -16,6 +16,7 @@ import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/auth/register';
 import Login from 'pages/auth/login';
 import { AuthContext } from 'context/authContext';
+import jwt_decode from 'jwt-decode';
 
 // import PrivateRoute from 'components/PrivateRoute';
 
@@ -54,6 +55,20 @@ function App() {
       localStorage.removeItem('token');
     }
   };
+
+  useEffect(() => {
+    if (authToken){
+      const decode = jwt_decode(authToken);
+      setUserData({
+        _id: decode._id,
+        nombre: decode.nombre,
+        apellido: decode.apellido,
+        indetificacion: decode.indetificacion,
+        correo : decode.correo,
+        rol: decode.rol,
+      })
+    }
+  },[authToken]);
 
   return (
     <ApolloProvider client = {client}>

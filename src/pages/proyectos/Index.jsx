@@ -12,6 +12,7 @@ import ButtonLoading from 'components/ButtonLoading';
 import { EDITAR_PROYECTO } from 'graphql/proyectos/mutations';
 import useFormData from 'hooks/useFormData';
 import PrivateComponent from 'components/PrivateComponent';
+import { Enum_FaseProyecto } from 'utils/enums';
 
 const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) => ({
   backgroundColor: '#8C515C',
@@ -60,13 +61,17 @@ const AccordionProyecto = ({ proyecto }) => {
         <AccordionDetailsStyled>
           <PrivateComponent roleList={['ADMINISTRADOR']}>
             <i
-              className='mx-4 fas fa-pen lapizEditarOscuro'
+              className='mx-4 fas fa-pen lapizEditarOscuro flex justify-end '
               onClick={() => {
                 setShowDialog(true);
               }}
             />
           </PrivateComponent>
-          <div>Liderado Por: {proyecto.lider.nombre}</div>
+          <div><span className='font-bold'>Fecha de Inicio:</span> {proyecto.fechaInicio}</div>
+          <div><span className='font-bold'>Fecha Final:</span> {proyecto.fechaFin}</div>
+          <div><span className='font-bold'>Fase: </span> {proyecto.fase} </div>
+          <div><span className='font-bold'>Presupuesto:</span> {proyecto.presupuesto} </div>
+          <div><span className='font-bold'>Liderado Por:</span> {proyecto.lider.nombre} {proyecto.lider.apellido}</div>
           <div className='flex'>
             {proyecto.objetivos.map((objetivo) => {
               return <Objetivo tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
@@ -106,14 +111,16 @@ const FormEditProyecto = ({ _id }) => {
 
   return (
     <div className='p-4'>
-      <h1 className='font-bold'>Modificar Estado del Proyecto</h1>
+      <h1 className='font-bold'>Actualizar Proyecto</h1>
       <form
         ref={form}
         onChange={updateFormData}
         onSubmit={submitForm}
         className='flex flex-col items-center'
       >
+        {/* <DropDown label='Estado del Proyecto' name='prespuesto' defaultValue={proyecto.presupuesto} /> */}
         <DropDown label='Estado del Proyecto' name='estado' options={Enum_EstadoProyecto} />
+        <DropDown label='Fase del Proyecto' name='fase' options={Enum_FaseProyecto} />
         <ButtonLoading disabled={false} loading={loading} text='Confirmar' />
       </form>
     </div>

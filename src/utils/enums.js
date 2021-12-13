@@ -13,4 +13,11 @@ const Enum_EstadoProyecto = {
   INACTIVO: 'Inactivo',
 };
 
-  export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto }
+const Enum_FaseProyecto = {
+  INICIADO: 'Iniciado',
+  DESARROLLO: 'Desarrollo',
+  TERMINADO: 'Terminado',
+  NULO: 'Nulo'
+};
+
+  export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto, Enum_FaseProyecto }

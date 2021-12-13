@@ -18,6 +18,7 @@ import jwt_decode from 'jwt-decode';
 import IndexProyectos from 'pages/proyectos/Index';
 import 'styles/globals.css';
 import 'styles/tabla.css'
+import IndexAvance from 'pages/avances';
 
 // import PrivateRoute from 'components/PrivateRoute';
 
@@ -87,6 +88,7 @@ function App() {
                 <Route path='/usuarios' element={<IndexUsuarios />} />
                 <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='proyectos' element={<IndexProyectos />} />
+                <Route path='/avances' element={<IndexAvance />} />
                 <Route path='page2' element={<Page2 />} />
                 <Route path='category1' element={<IndexCategory1 />} />
                 <Route path='category1/page1' element={<Category1 />} />

@@ -18,7 +18,6 @@ import Register from 'pages/auth/register';
 import Login from 'pages/auth/login';
 import { AuthContext } from 'context/authContext';
 import jwt_decode from 'jwt-decode';
-import IndexAvances from 'pages/avances';
 import VerUsuario from 'pages/usuarios/verUsuario';
 
 // import PrivateRoute from 'components/PrivateRoute';
@@ -90,7 +89,6 @@ function App() {
                 <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='/usuarios/verUsuario/:_id' element={<VerUsuario />} />
                 <Route path='/perfil/:_id' element={<Perfil />} />
-                <Route path='/avances' element={<IndexAvances />} />
                 <Route path='page2' element={<Page2 />} />
                 <Route path='category1' element={<IndexCategory1 />} />
                 <Route path='category1/page1' element={<Category1 />} />

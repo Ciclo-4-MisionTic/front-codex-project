@@ -72,6 +72,7 @@ const AccordionProyecto = ({ proyecto }) => {
           <div><span className='font-bold'>Fase: </span> {proyecto.fase} </div>
           <div><span className='font-bold'>Presupuesto:</span> {proyecto.presupuesto} </div>
           <div><span className='font-bold'>Liderado Por:</span> {proyecto.lider.nombre} {proyecto.lider.apellido}</div>
+          
           <div className='flex'>
             {proyecto.objetivos.map((objetivo) => {
               return <Objetivo tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;

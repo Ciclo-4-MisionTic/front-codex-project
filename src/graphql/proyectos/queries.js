@@ -19,6 +19,7 @@ const PROYECTOS = gql `
         objetivos {
         tipo
         descripcion
+        
         }
     }
     }

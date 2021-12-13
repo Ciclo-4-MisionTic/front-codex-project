@@ -6,6 +6,10 @@ query Avances {
     _id
     fecha
     descripcion
+    proyecto {
+      nombre
+    }
+
     observaciones {
       descripcion
     }

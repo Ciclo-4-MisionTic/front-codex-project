@@ -5,15 +5,16 @@ import PrivateComponent from './PrivateComponent';
 
 const SidebarLinks = () => {
   return (
-    <ul className='mt-12'>
+    <ul className='mt-0'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
+      <SidebarRoute to='/perfil' title='Perfil' icon='fas fa-user' />
       <PrivateComponent roleList= {["ADMINISTRADOR"]}>
         <SidebarRoute to='/usuarios' title='Usuarios' icon='fas fa-user' />
       </PrivateComponent>
       <SidebarRoute to='/proyectos' title='Proyectos' icon='fas fa-clipboard-list' />
-      <SidebarRoute to='/page2' title='Pagina2' icon='fas fa-smile-wink' />
-      <SidebarRoute to='/category1' title='Catego 1' icon='fab fa-amazon' />
-      <SidebarRoute to='/category1/page1' title='Test' icon='fas fa-car' />
+      <SidebarRoute to='/category1' title='Inscripciones' icon='fas fa-edit' />
+      <SidebarRoute to='/avances' title='Avances' icon="fas fa-chart-line" />
+
       <Logout />
     </ul>
   );
@@ -41,7 +42,7 @@ const Logout = () => {
 const Logo = () => {
   return (
     <div className='py-3 w-full flex flex-col items-center justify-center'>
-      <img src='logo.png' alt='Logo' className='h-29' />
+      <img src='logo.png' alt='Logo' className='h-25' />
       <span className='my-2 text-gl font-bold text-center text-white '>Gestor de Proyectos CODEX</span>
     </div>
   );

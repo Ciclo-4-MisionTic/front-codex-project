@@ -53,7 +53,7 @@ const IndexAvance = () => {
           <AccordionSummaryStyled expandIcon={<i className='fas fa-chevron-down' />}>
             <div className='flex w-full justify-between'>
               <div className='uppercase font-semibold text-moradoClaro-light'>
-               ID: {avance._id} 
+               Avance de {avance.proyecto.nombre} 
               </div>
             </div>
           </AccordionSummaryStyled>
@@ -66,6 +66,7 @@ const IndexAvance = () => {
                 }}
               />
 
+            <div><span className='font-bold'>ID:</span> {avance._id}</div>
             <div><span className='font-bold'>Fecha:</span> {avance.fecha}</div>
             <div><span className='font-bold'>Descripcion: </span> {avance.descripcion} </div>
   

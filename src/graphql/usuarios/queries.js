@@ -27,4 +27,4 @@ const GET_USUARIO = gql`
 }
 `;
 
-export {GET_USUARIOS, GET_USUARIO}
+export {GET_USUARIOS, GET_USUARIO }

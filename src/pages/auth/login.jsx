@@ -14,7 +14,7 @@ const Login = () => {
     const {setToken} = useAuth();
     const {form, formData, updateFormData } = useFormData();
 
-    const [login, {data:dataMutation, loading:mutationLoading, error:mutationError}] = 
+    const [login, {data:dataMutation, loading:mutationLoading, error:mutationError}] =
       useMutation(LOGIN)
 
     const submitForm = (e) => {
@@ -34,10 +34,8 @@ const Login = () => {
       }
   },[dataMutation, setToken, navigate])
 
-  
-    
     return (
-      
+
         <div className='flex flex-col items-center justify-center w-full h-full p-10'>
         <h1 className='titulo'>Iniciar sesión</h1>
         <form className='flex flex-col' onSubmit={submitForm} onChange={updateFormData} ref={form}>

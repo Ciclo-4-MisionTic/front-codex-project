@@ -10,28 +10,28 @@ import { EDITAR_USUARIO } from 'graphql/usuarios/mutations';
 import DropDown from 'components/Dropdown';
 import { Enum_EstadoUsuario } from 'utils/enums';
 import PrivateComponent from 'components/PrivateComponent';
+import { Enum_EstadoEstudiante } from 'utils/enums';
 
 const EditarUsuario = () => {
 
     const {form, formData, updateFormData } = useFormData(null)
-    const { _id } = useParams(); 
+    const { _id } = useParams();
 
     const {
-        data:queryData, 
+        data:queryData,
         error: queryError,
         loading: queryLoading,
     } = useQuery(GET_USUARIO, {
         variables:{ _id },
     });
 
-    const [editarUsuario, { data: mutationData, loading: mutationLoading, error: mutationError}] = 
+    const [editarUsuario, { data: mutationData, loading: mutationLoading, error: mutationError}] =
         useMutation(EDITAR_USUARIO);
 
-    
     const submitForm = (e)=>{
         e.preventDefault();
-        delete formData.rol; 
-        editarUsuario({ 
+        delete formData.rol;
+        editarUsuario({
             variables: {_id,...formData},
         });
     };
@@ -52,7 +52,7 @@ const EditarUsuario = () => {
         }
 
     },[mutationData]);
-    
+
     if(queryLoading) return <div>Cargando....</div>;
 
     return (
@@ -67,6 +67,7 @@ const EditarUsuario = () => {
           ref={form}
           className='flex flex-col items-center justify-center'
         >
+          {/* <PrivateComponent roleList= {["ADMINISTRADOR"]}>
           <Input
             label='Nombre de la persona:'
             type='text'
@@ -74,6 +75,8 @@ const EditarUsuario = () => {
             defaultValue={queryData.Usuario.nombre}
             required={true}
           />
+          </PrivateComponent>
+          <PrivateComponent roleList= {["ADMINISTRADOR"]}>
           <Input
             label='Apellido de la persona:'
             type='text'
@@ -81,6 +84,8 @@ const EditarUsuario = () => {
             defaultValue={queryData.Usuario.apellido}
             required={true}
           />
+          </PrivateComponent>
+          <PrivateComponent roleList= {["ADMINISTRADOR"]}>
           <Input
             label='Correo de la persona:'
             type='email'
@@ -88,6 +93,8 @@ const EditarUsuario = () => {
             defaultValue={queryData.Usuario.correo}
             required={true}
           />
+          </PrivateComponent>
+          <PrivateComponent roleList= {["ADMINISTRADOR"]}>
           <Input
             label='Identificación de la persona:'
             type='text'
@@ -95,8 +102,16 @@ const EditarUsuario = () => {
             defaultValue={queryData.Usuario.identificacion}
             required={true}
           />
-          <PrivateComponent roleList= {['LIDER'],['ADMINISTRADOR']}>
-          <DropDown 
+          </PrivateComponent>
+          <Input
+            label='Contraseña de la persona:'
+            type='password'
+            name='password'
+            defaultValue={queryData.Usuario.password}
+            required={true}
+          /> */}
+          <PrivateComponent roleList= {["ADMINISTRADOR"]}>
+          <DropDown
             label='Estado de la persona:'
             name='estado'
             defaultValue={queryData.Usuario.estado}
@@ -104,8 +119,21 @@ const EditarUsuario = () => {
             options={Enum_EstadoUsuario}
           />
           </PrivateComponent>
-          
-          
+
+          <PrivateComponent roleList= {["LIDER"]}>
+          <DropDown
+            label='Estado de la persona:'
+            name='estado'
+            defaultValue={queryData.Usuario.estado}
+            required={true}
+            options={Enum_EstadoEstudiante}
+          />
+          </PrivateComponent>
+
+          <PrivateComponent roleList= {['ESTUDIANTE']}>
+          <span>Estado del usuario: {queryData.Usuario.estado}</span>
+          </PrivateComponent>
+
           <span>Rol del usuario: {queryData.Usuario.rol}</span>
           <ButtonLoading disabled= {Object.keys(formData).length===0} loading={mutationLoading} text='Confirmar'/>
         </form>

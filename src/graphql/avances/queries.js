@@ -13,15 +13,43 @@ const GET_AVANCES    = gql `
 }
 `;
 const GET_AVANCE = gql`
-    query Avance($_id: String!) {
-    Avance(_id: $_id) {
-        _id
-        fecha
-        descripcion
-        proyecto
-        creadorPor
-        observaciones
+    query Usuario($id: String!) {
+  Usuario(_id: $id) {
+    _id
+    nombre
+    apellido
+    identificacion
+    correo
+    estado
+    rol
+    inscripciones {
+      _id
+      estado
+      fechaIngreso
     }
+    avancesCreados {
+      _id
+      fecha
+      descripcion
+      proyecto {
+        _id
+        nombre
+      }
+    }
+    proyectosLiderados {
+      _id
+      nombre
+      fechaInicio
+      fechaFin
+      estado
+      fase
+      lider {
+        _id
+        nombre
+        correo
+      }
+    }
+  }
 }
 `;
 

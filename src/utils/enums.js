@@ -1,3 +1,5 @@
+import PrivateComponent from "components/PrivateComponent";
+
 const Enum_Rol = {
     ADMINISTRADOR: 'Administrador',
     ESTUDIANTE: 'Estudiante',
@@ -8,5 +10,10 @@ const Enum_EstadoUsuario = {
   AUTORIZADO: 'Autorizado',
   NO_AUTORIZADO: 'No autorizado',
 };
+const Enum_EstadoEstudiante = {
+  PENDIENTE: 'Pendiente',
+  AUTORIZADO: 'Autorizado',
+};
 
-  export { Enum_Rol, Enum_EstadoUsuario }
+
+  export { Enum_Rol, Enum_EstadoUsuario , Enum_EstadoEstudiante}

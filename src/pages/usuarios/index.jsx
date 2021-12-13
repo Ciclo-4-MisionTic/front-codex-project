@@ -5,9 +5,8 @@ import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { Enum_EstadoUsuario, } from 'utils/enums';
 import PrivateRoute from 'components/PrivateRoute';
-import useFormData from 'hooks/useFormData';
-import { GET_USUARIO } from 'graphql/usuarios/queries';
 import { Enum_Rol } from 'utils/enums';
+
 
 const IndexUsuarios = () => {
     const {data,error,loading} = useQuery(GET_USUARIOS);
@@ -23,7 +22,7 @@ const IndexUsuarios = () => {
 
     if(loading) return <div>Cargando....</div>
     return (
-        <PrivateRoute roleList={["ADMINISTRADOR", "LIDER"]}>
+        <PrivateRoute roleList={[ "LIDER", "ADMINISTRADOR"]}>
             <div>
                 <div className='titulo'> Datos Usuarios:</div>
                 <table className='tabla'>
@@ -61,7 +60,7 @@ const IndexUsuarios = () => {
                                             <i className='fas fa-pen  lapizEditar' />
                                         </Link>
                                     </td>
-        
+
                                 </tr>
                             );
                         })}

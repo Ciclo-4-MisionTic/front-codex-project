@@ -5,11 +5,6 @@ import { GET_USUARIO } from 'graphql/usuarios/queries';
 import InputLeer from 'components/inputleer';
 import ButtonLoading from 'components/ButtonLoading';
 import useFormData from 'hooks/useFormData';
-import { toast } from 'react-toastify';
-import { EDITAR_USUARIO } from 'graphql/usuarios/mutations';
-import DropDown from 'components/Dropdown';
-import { Enum_EstadoUsuario } from 'utils/enums';
-import PrivateComponent from 'components/PrivateComponent';
 
 const VerUsuario = () => {
 
@@ -37,12 +32,13 @@ const VerUsuario = () => {
         <table
           className='flex flex-col items-center justify-center'
         >
-          <span className='letraMediama'>Nombre: {queryData.Usuario.nombre}</span>
-          <span className='letraMediama' >Apellido: {queryData.Usuario.apellido}</span>
-          <span className='letraMediama' >Correo Electronico: {queryData.Usuario.correo}</span>
-          <span className='letraMediama' >Identificación : {queryData.Usuario.identificacion}</span>
-          <span className='letraMediama' >Estado : {queryData.Usuario.estado}</span>
-          <span className='letraMediama' >Rol: {queryData.Usuario.rol}</span>
+          <span className='subTitulo'>Nombre: {queryData.Usuario.nombre}</span>
+          <span className='subTitulo' >Apellido: {queryData.Usuario.apellido}</span>
+          <span className='subTitulo' >Correo Electronico: {queryData.Usuario.correo}</span>
+          <span className='subTitulo' >Identificación : {queryData.Usuario.identificacion}</span>
+          <span className='subTitulo' >Estado : {queryData.Usuario.estado}</span>
+          <span className='subTitulo' >Rol: {queryData.Usuario.rol}</span>
+          
           
         </table>
       </div>

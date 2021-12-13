@@ -5,16 +5,16 @@ import PrivateComponent from './PrivateComponent';
 
 const SidebarLinks = () => {
   return (
-    <ul className='mt-12'>
+    <ul className='mt-0'>
       <SidebarRoute to='' title='Inicio' icon='fas fa-home' />
       <PrivateComponent roleList={["ADMINISTRADOR", "LIDER"]}>
         <SidebarRoute to='/usuarios' title='Usuarios' icon='fas fa-user' />
       </PrivateComponent>
-      <PrivateComponent roleList={["ESTUDIANTE"]}>
+      <PrivateComponent roleList={["ESTUDIANTE", "LIDER", "ADMINISTRADOR"]}>
         <SidebarRoute to='/perfil' title='Perfil' icon='fas fa-user' />
       </PrivateComponent>
-      <SidebarRoute to='/page2' title='Pagina2' icon='fas fa-smile-wink' />
-      <SidebarRoute to='/category1' title='Catego 1' icon='fab fa-amazon' />
+      <SidebarRoute to='/page2' title='Proyectos' icon='fas fa-clipboard-list' />
+      <SidebarRoute to='/category1' title='Inscripciones' icon='fas fa-edit' />
       <SidebarRoute to='/avances' title='Avances' icon="fas fa-chart-line" />
       <Logout />
     </ul>

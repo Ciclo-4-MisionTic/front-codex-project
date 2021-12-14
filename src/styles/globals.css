@@ -32,3 +32,7 @@
 .lapizEditarClaro{
   @apply text-moradoOscuro-default hover:text-moradoClaro-light cursor-pointer
 }
+
+.buttonCrear{
+  @apply bg-moradoClaro-dark p-2 rounded-lg shadow-sm text-white font-semibold hover:bg-moradoClaro-default
+}

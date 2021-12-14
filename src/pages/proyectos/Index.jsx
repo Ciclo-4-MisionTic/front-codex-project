@@ -13,6 +13,7 @@ import { EDITAR_PROYECTO } from 'graphql/proyectos/mutations';
 import useFormData from 'hooks/useFormData';
 import PrivateComponent from 'components/PrivateComponent';
 import { Enum_FaseProyecto } from 'utils/enums';
+import { Link } from 'react-router-dom';
 
 const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) => ({
   backgroundColor: '#8C515C',
@@ -35,9 +36,22 @@ const IndexProyectos = () => {
 
   if (queryData.Proyectos) {
     return (
-      <div className='p-10'>
+      <div className='p-5'>
+        <h1 className='titulo'>Lista de Proyectos</h1>
+        <PrivateComponent roleList={['ADMINISTRADOR','LIDER']}> 
+          <div className='self-end my-5 flex justify-end' >
+            <button className='buttonCrear'>
+              <Link to='/proyectos/nuevo'>Crear nuevo proyecto</Link>
+            </button>
+          </div>
+        </PrivateComponent>
+        
         {queryData.Proyectos.map((proyecto) => {
-          return <AccordionProyecto proyecto={proyecto} />;
+          return (
+              <AccordionProyecto proyecto={proyecto} />
+              
+           
+          )
         })}
       </div>
     );

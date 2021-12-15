@@ -102,14 +102,8 @@ const EditarUsuario = () => {
             defaultValue={queryData.Usuario.identificacion}
             required={true}
           />
-          </PrivateComponent>
-          <Input
-            label='Contraseña de la persona:'
-            type='password'
-            name='password'
-            defaultValue={queryData.Usuario.password}
-            required={true}
-          /> */}
+          </PrivateComponent> */}
+          
           <PrivateComponent roleList= {["ADMINISTRADOR"]}>
           <DropDown
             label='Estado de la persona:'
@@ -135,6 +129,7 @@ const EditarUsuario = () => {
           </PrivateComponent>
 
           <span>Rol del usuario: {queryData.Usuario.rol}</span>
+
           <ButtonLoading disabled= {Object.keys(formData).length===0} loading={mutationLoading} text='Confirmar'/>
         </form>
       </div>

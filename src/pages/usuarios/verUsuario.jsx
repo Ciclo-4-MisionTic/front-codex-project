@@ -2,8 +2,6 @@ import React, { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client'
 import { GET_USUARIO } from 'graphql/usuarios/queries';
-import InputLeer from 'components/inputleer';
-import ButtonLoading from 'components/ButtonLoading';
 import useFormData from 'hooks/useFormData';
 
 const VerUsuario = () => {

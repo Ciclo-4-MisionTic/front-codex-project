@@ -30,6 +30,13 @@
   @apply text-moradoClaro-dark cursor-pointer font-bold text-xl hover:text-moradoOscuro-dark
 }
 
-.lapizEditar{
+.lapizEditarOscuro{
   @apply text-moradoOscuro-dark hover:text-moradoOscuro-light cursor-pointer
+}
+.lapizEditarClaro{
+  @apply text-moradoOscuro-default hover:text-moradoClaro-light cursor-pointer
+}
+
+.buttonCrear{
+  @apply bg-moradoClaro-dark p-2 rounded-lg shadow-sm text-white font-semibold hover:bg-moradoClaro-default
 }

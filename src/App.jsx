@@ -11,14 +11,17 @@ import Category1 from 'pages/category1/CategoryPage1';
 import IndexUsuarios from 'pages/usuarios';
 import EditarUsuario from 'pages/usuarios/editar';
 import Perfil from 'pages/usuarios/perfil';
-import 'styles/globals.css';
-import 'styles/tabla.css'
 import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/auth/register';
 import Login from 'pages/auth/login';
 import { AuthContext } from 'context/authContext';
 import jwt_decode from 'jwt-decode';
+import IndexProyectos from 'pages/proyectos/Index';
+import IndexAvance from 'pages/avances';
+import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
 import VerUsuario from 'pages/usuarios/verUsuario';
+import 'styles/globals.css';
+import 'styles/tabla.css'
 
 // import PrivateRoute from 'components/PrivateRoute';
 
@@ -27,7 +30,7 @@ import VerUsuario from 'pages/usuarios/verUsuario';
 // });
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:4000/graphql",
+ uri: "http://localhost:4000/graphql",
 });
 
 

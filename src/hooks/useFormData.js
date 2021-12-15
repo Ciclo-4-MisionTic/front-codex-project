@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-
 const useFormData = (initial) => {
   const form = useRef(initial);
   const [formData, setFormData] = useState({});
@@ -36,5 +35,4 @@ const useFormData = (initial) => {
   };
   return { form, formData, updateFormData };
 };
-
 export default useFormData;

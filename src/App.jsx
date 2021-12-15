@@ -10,16 +10,18 @@ import IndexCategory1 from 'pages/category1/Index';
 import Category1 from 'pages/category1/CategoryPage1';
 import IndexUsuarios from 'pages/usuarios';
 import EditarUsuario from 'pages/usuarios/editar';
+import Perfil from 'pages/usuarios/perfil';
 import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/auth/register';
 import Login from 'pages/auth/login';
 import { AuthContext } from 'context/authContext';
 import jwt_decode from 'jwt-decode';
 import IndexProyectos from 'pages/proyectos/Index';
-import 'styles/globals.css';
-import 'styles/tabla.css'
 import IndexAvance from 'pages/avances';
 import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
+import VerUsuario from 'pages/usuarios/verUsuario';
+import 'styles/globals.css';
+import 'styles/tabla.css'
 
 // import PrivateRoute from 'components/PrivateRoute';
 
@@ -88,6 +90,8 @@ function App() {
                 <Route path='' element={<Index />} />
                 <Route path='/usuarios' element={<IndexUsuarios />} />
                 <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
+                <Route path='/usuarios/verUsuario/:_id' element={<VerUsuario />} />
+                <Route path='/perfil/:_id' element={<Perfil />} />
                 <Route path='proyectos' element={<IndexProyectos />} />
                 <Route path='proyectos/nuevo' element={<NuevoProyecto />} />
                 <Route path='/avances' element={<IndexAvance />} />

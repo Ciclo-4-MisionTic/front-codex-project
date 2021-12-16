@@ -11,6 +11,7 @@ import { Enum_TipoObjetivo } from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import { CREAR_PROYECTO } from 'graphql/proyectos/mutations';
 import { ObjContext, useObj } from 'context/objContext';
+import { toast } from 'react-toastify';
 
 const NuevoProyecto = () => {
   const {form, formData, updateFormData } = useFormData();
@@ -37,8 +38,23 @@ const NuevoProyecto = () => {
   },[data]);
 
   useEffect(()=>{
+    if(mutationError){
+        toast.error("Error creando el proyecto")
+    }
+},[mutationError])
+
+useEffect(() => {
+    if(mutationData){
+        toast.success("Proyecto creado correctamente")
+    }
+
+},[mutationData]);
+
+  useEffect(()=>{
     console.log("data mutation", mutationData)
   })
+
+
 
   const submitForm = (e)=>{
     e.preventDefault();
@@ -55,7 +71,7 @@ const NuevoProyecto = () => {
   if (loading) return <div>...Cargando</div>
 
     return (
-        <PrivateRoute roleList={['ADMINISTRADOR', 'LIDER']}>
+        <PrivateRoute roleList={['LIDER']}>
           <div className='p-10 flex items-center flex-col'>
               <div className='self-start' >
                 <Link to='/proyectos'>

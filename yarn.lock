@@ -1123,11 +1123,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-<<<<<<< HEAD
 "@babel/runtime@^7.13.10", "@babel/runtime@^7.16.3":
-=======
-"@babel/runtime@^7.16.3":
->>>>>>> 3df51c9f8f807673b20c5c265dd27d9cd983abbb
   version "7.16.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.3.tgz#b86f0db02a04187a3c17caa77de69840165d42d5"
   integrity sha512-WBwekcqacdY2e9AF/Q7WLFUWmdJGJTkbjqTjoMDgXkVZ3ZRUvOPsLb5KdwISoQVsbP+DQzVZW4Zhci0DvpbNTQ==
@@ -1202,7 +1198,6 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
-<<<<<<< HEAD
 "@emotion/babel-plugin@^11.3.0":
   version "11.3.0"
   resolved "https://registry.yarnpkg.com/@emotion/babel-plugin/-/babel-plugin-11.3.0.tgz#3a16850ba04d8d9651f07f3fb674b3436a4fb9d7"
@@ -1221,8 +1216,6 @@
     source-map "^0.5.7"
     stylis "^4.0.3"
 
-=======
->>>>>>> 3df51c9f8f807673b20c5c265dd27d9cd983abbb
 "@emotion/cache@^11.6.0":
   version "11.6.0"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-11.6.0.tgz#65fbdbbe4382f1991d8b20853c38e63ecccec9a1"
@@ -1246,16 +1239,11 @@
   dependencies:
     "@emotion/memoize" "^0.7.4"
 
-<<<<<<< HEAD
 "@emotion/memoize@^0.7.4", "@emotion/memoize@^0.7.5":
-=======
-"@emotion/memoize@^0.7.4":
->>>>>>> 3df51c9f8f807673b20c5c265dd27d9cd983abbb
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.7.5.tgz#2c40f81449a4e554e9fc6396910ed4843ec2be50"
   integrity sha512-igX9a37DR2ZPGYtV6suZ6whr8pTFtyHL3K/oLUotxpSVO2ASaprmAe2Dkq7tBo7CRY7MMDrAa9nuQP9/YG8FxQ==
 
-<<<<<<< HEAD
 "@emotion/react@^11.7.0":
   version "11.7.0"
   resolved "https://registry.yarnpkg.com/@emotion/react/-/react-11.7.0.tgz#b179da970ac0e8415de3ac165deadf8d9c4bf89f"
@@ -1280,14 +1268,11 @@
     "@emotion/utils" "^1.0.0"
     csstype "^3.0.2"
 
-=======
->>>>>>> 3df51c9f8f807673b20c5c265dd27d9cd983abbb
 "@emotion/sheet@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@emotion/sheet/-/sheet-1.1.0.tgz#56d99c41f0a1cda2726a05aa6a20afd4c63e58d2"
   integrity sha512-u0AX4aSo25sMAygCuQTzS+HsImZFuS8llY8O7b9MDRzbJM0kVJlAz6KNDqcG7pOuQZJmj/8X/rAW+66kMnMW+g==
 
-<<<<<<< HEAD
 "@emotion/styled@^11.6.0":
   version "11.6.0"
   resolved "https://registry.yarnpkg.com/@emotion/styled/-/styled-11.6.0.tgz#9230d1a7bcb2ebf83c6a579f4c80e0664132d81d"
@@ -1304,8 +1289,6 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.5.tgz#77211291c1900a700b8a78cfafda3160d76949ed"
   integrity sha512-OWORNpfjMsSSUBVrRBVGECkhWcULOAJz9ZW8uK9qgxD+87M7jHRcvh/A96XXNhXTLmKcoYSQtBEX7lHMO7YRwg==
 
-=======
->>>>>>> 3df51c9f8f807673b20c5c265dd27d9cd983abbb
 "@emotion/utils@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-1.0.0.tgz#abe06a83160b10570816c913990245813a2fd6af"
@@ -11273,11 +11256,7 @@ stylehacks@^4.0.0:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
 
-<<<<<<< HEAD
 stylis@^4.0.10, stylis@^4.0.3:
-=======
-stylis@^4.0.10:
->>>>>>> 3df51c9f8f807673b20c5c265dd27d9cd983abbb
   version "4.0.13"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.0.13.tgz#f5db332e376d13cc84ecfe5dace9a2a51d954c91"
   integrity sha512-xGPXiFVl4YED9Jh7Euv2V220mriG9u4B2TA6Ybjc1catrstKD2PpIdU3U0RKpkVBC2EhmL/F0sPCr9vrFTNRag==

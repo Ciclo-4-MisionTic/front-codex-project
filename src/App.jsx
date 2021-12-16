@@ -20,6 +20,7 @@ import IndexProyectos from 'pages/proyectos/Index';
 import IndexAvance from 'pages/avances';
 import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
 import VerUsuario from 'pages/usuarios/verUsuario';
+import IndexInscripciones from 'pages/inscripciones/inscripciones';
 import 'styles/globals.css';
 import 'styles/tabla.css'
 
@@ -91,7 +92,11 @@ function App() {
                 <Route path='/usuarios' element={<IndexUsuarios />} />
                 <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='/usuarios/verUsuario/:_id' element={<VerUsuario />} />
-                <Route path='/perfil' element={<Perfil />} />
+                <Route path='/perfil/:_id' element={<Perfil />} />
+                <Route path='proyectos' element={<IndexProyectos />} />
+                <Route path='proyectos/nuevo' element={<NuevoProyecto />} />
+                <Route path='/inscripciones' element={<IndexInscripciones />} />
+                <Route path='/avances' element={<IndexAvance />} />
                 <Route path='page2' element={<Page2 />} />
                 <Route path='category1' element={<IndexCategory1 />} />
                 <Route path='category1/page1' element={<Category1 />} />

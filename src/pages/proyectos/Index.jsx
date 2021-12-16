@@ -38,7 +38,7 @@ const IndexProyectos = () => {
     return (
       <div className='p-5'>
         <h1 className='titulo'>Lista de Proyectos</h1>
-        <PrivateComponent roleList={['ADMINISTRADOR','LIDER']}> 
+        <PrivateComponent roleList={['LIDER']}> 
           <div className='self-end my-5 flex justify-end' >
             <button className='buttonCrear'>
               <Link to='/proyectos/nuevo'>Crear nuevo proyecto</Link>

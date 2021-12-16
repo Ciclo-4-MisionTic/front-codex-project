@@ -14,16 +14,16 @@ import useFormData from 'hooks/useFormData';
 import PrivateComponent from 'components/PrivateComponent';
 import { Enum_FaseProyecto } from 'utils/enums';
 import { Link } from 'react-router-dom';
+import { CREAR_INSCRIPCION } from 'graphql/inscripciones/mutaciones';
+import { toast } from 'react-toastify';
+import { useUser } from 'context/userContext';
+import {
+  AccordionStyled,
+  AccordionSummaryStyled,
+  AccordionDetailsStyled,
+} from 'components/Accordion';
 
-const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) => ({
-  backgroundColor: '#8C515C',
-}));
-const AccordionSummaryStyled = styled((props) => <AccordionSummary {...props} />)(({ theme }) => ({
-  backgroundColor: '#8C515C',
-}));
-const AccordionDetailsStyled = styled((props) => <AccordionDetails {...props} />)(({ theme }) => ({
-  backgroundColor: '#D9BFC4',
-}));
+
 
 const IndexProyectos = () => {
   const { data: queryData, loading, error } = useQuery(PROYECTOS);
@@ -151,6 +151,66 @@ const Objetivo = ({ tipo, descripcion }) => {
         <div>Editar</div>
       </PrivateComponent>
     </div>
+  );
+};
+
+//estoy tratando de crear algo en proyecto para avances
+const InscripcionProyecto = ({ idProyecto, estado, inscripciones }) => {
+  const [estadoInscripcion, setEstadoInscripcion] = useState('');
+
+  // falta captura del error de la mutacion
+  const [crearInscripcion, { data, loading }] = useMutation(CREAR_INSCRIPCION);
+  const { userData } = useUser();
+
+  useEffect(() => {
+    if (userData && inscripciones) {
+      const flt = inscripciones.filter(
+        (el) => el.estudiante._id === userData._id
+      );
+      if (flt.length > 0) {
+        setEstadoInscripcion(flt[0].estado);
+      }
+    }
+  }, [userData, inscripciones]);
+
+  useEffect(() => {
+    if (data) {
+      toast.success('inscripcion creada con exito');
+    }
+  }, [data]);
+
+  const confirmarInscripcion = () => {
+    crearInscripcion({
+      variables: { proyecto: idProyecto, estudiante: userData._id },
+    });
+  };
+
+  return (
+    <>
+      {estadoInscripcion !== '' ? (
+        <div className='flex flex-col items-start'>
+          <span>
+            Ya estas inscrito en este proyecto y el estado es{' '}
+            {estadoInscripcion}
+          </span>
+          {estadoInscripcion === 'ACEPTADO' && (
+            <Link
+              to={`/avances/${idProyecto}`}
+              className='bg-yellow-700 p-2 rounded-lg text-white my-2 hover:bg-yellow-500'
+            >
+              Agregar Avance
+            </Link>
+          )}
+        </div>
+      ) : (
+        <ButtonLoading
+          onClick={() => confirmarInscripcion()}
+          disabled={estado === 'INACTIVO'}
+          loading={loading}
+          text='Inscribirme en este proyecto'
+        />
+      )}
+    </>
   );
 };
 

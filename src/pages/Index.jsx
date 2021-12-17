@@ -1,13 +1,11 @@
 import React from 'react';
+import bienvido2 from  'media/bienvenido2.png';
 
 
 const Index = () => {
   return (
     <div>
-      <div className='bg-white'>Index page</div>
-      <div className='bg-white h-96'>Index page</div>
-      <div className='bg-white h-96'>Index page</div>
-      <div className='bg-white h-96'>Index page</div>
+      <div className='bg-white'><img src={bienvido2} alt='Logo' className='w-25' /></div>
     </div>
   );
 };

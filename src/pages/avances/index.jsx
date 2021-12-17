@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_AVANCES } from 'graphql/avances/queries';
 import { useParams } from 'react-router-dom';
-import { Dialog } from '@mui/material';
+import { Button, Dialog } from '@mui/material';
 import Input from 'components/Input';
 import ButtonLoading from 'components/ButtonLoading';
 import useFormData from 'hooks/useFormData';
 import { CREAR_AVANCE } from 'graphql/avances/mutations';
 import { useUser } from 'context/userContext';
 import { toast } from 'react-toastify';
+import PrivateComponent from 'components/PrivateComponent';
+import { CREAR_OBSERVACION } from 'graphql/avances/mutations';
+import { nanoid } from 'nanoid';
 
 const IndexAvance = () => {
     const { projectid } = useParams();
@@ -54,6 +57,7 @@ const IndexAvance = () => {
   };
 
   const Avance = ({ avance }) => {
+    const[openDialog,setOpenDialog]=useState(false);
     return (
       <div className='flex flex-col bg-gray-200 shadow-lg p-3 rounded-xl m-2'>
         <span>
@@ -63,11 +67,87 @@ const IndexAvance = () => {
           <strong>Fecha: </strong>
           {avance.fecha}
         </span>
-        <span>{avance.observaciones.length === 0 && 'Sin comentarios'}</span>
+        {/* <span>{avance.observaciones.length === 0 && 'Sin comentarios'}</span> */}
+        <div className='flex my-4'>{avance.observaciones.length === 0 ?(<span>Sin observaciones</span>
+    ):(
+      <>
+      {avance.observaciones.map((obs,index)=>{
+        return (
+          <div
+          key={nanoid()}
+          className='bg-white w-32 m-2 p-2 rounded-lg shadow-lg flex-flex-col '
+          >
+            <span>
+        {index+1},{obs}
+        </span>
+        <div className='flex-items-center justify-center my-2'>
+        <i className='fas fa-pen mx-2'/>
+        <i className='fas fa-trash mx-2'/>
+        </div>
+        
+        </div>
+        );
+      })}
+      </>
+    )}
+      </div>
+        <PrivateComponent roleList={['ADMINISTRADOR','LIDER']}> 
+          <Button 
+          onClick ={() => {
+            setOpenDialog(true);
+          }}
+            className='bg-indigo-500 p3  my-2  rounded-lg  w-48 text-white hover-bg-indigo-700' type="button">Agregar observacion</Button>
+          </PrivateComponent>
+          <Dialog>
+            open ={openDialog}
+            onClose ={() => {
+              setOpenDialog(false);
+            }}
+            <AgregarObservacion _id={avance._id} setOpenDialog={setOpenDialog} />
+          </Dialog>
+       
       </div>
     );
   };
 
+  const AgregarObservacion =({_id,setOpenDialog}) =>{
+    const {formData,form,updateFormData}=useFormData();
+    const [crearObservacion,{loading}]=useMutation(CREAR_OBSERVACION,
+      {refetchQueries:[GET_AVANCES],
+      });
+
+    const submitForm =(e) => {
+      e.preventDefault()
+      crearObservacion({
+        variables:{
+          _id,  
+          ...formData
+        },
+    }).then(() => {
+      toast.success("observación agregada exitosamente");
+      setOpenDialog(false)
+    })
+    .catch(() => {
+      toast.error("error agregando observación");
+    });
+    };
+  
+    return (
+      <div className='p-4'>
+      <h1 className='text-2x1 fond-bold text-gray-900'>
+        Agregar una observacion
+      </h1>
+      <form ref={form} onChange={updateFormData} onSubmit={submitForm}>
+        {/* <input name="observacion" type="text" required={true}/> */}
+        <div className='flex-felx-col'>
+      <textarea name="observacion" className='input'/>
+        <ButtonLoading text="Agregar observacion" loading={loading} disabled={Object.keys(formData).length===0}
+        />
+        </div>
+      </form>
+    </div>
+    );
+  };
   const CrearAvance = ({ proyecto, setOpenDialog }) => {
     const { userData } = useUser();
     const { form, formData, updateFormData } = useFormData();
@@ -106,98 +186,6 @@ const IndexAvance = () => {
     );
   };
  
-
-  
-  // const AccordionAvance = ({ avance}) => {
-  //   const [showDialog, setShowDialog] = useState(false);
-  //   return (
-  //     <>
-  //       <AccordionStyled>
-  //         <AccordionSummaryStyled expandIcon={<i className='fas fa-chevron-down' />}>
-  //           <div className='flex w-full justify-between'>
-  //             <div className='uppercase font-semibold text-moradoClaro-light'>
-  //              Avance de {avance.proyecto.nombre} 
-  //             </div>
-  //           </div>
-  //         </AccordionSummaryStyled>
-  //         <AccordionDetailsStyled>
-        
-  //             <i
-  //               className='mx-4 fas fa-pen lapizEditarOscuro flex justify-end '
-  //               onClick={() => {
-  //                 setShowDialog(true);
-  //               }}
-  //             />
-
-  //           <div><span className='font-bold'>ID:</span> {avance._id}</div>
-  //           <div><span className='font-bold'>Fecha:</span> {avance.fecha}</div>
-  //           <div><span className='font-bold'>Descripcion: </span> {avance.descripcion} </div>
-  
-  //           <div className='flex'>
-  //             {avance.observaciones.map((observacion) => {
-  //               return <Observacion _id={observacion._id} descripcion={observacion.descripcion} />;
-  //             })}
-  //           </div>
-  //         </AccordionDetailsStyled>
-  //       </AccordionStyled>
-  //       <Dialog
-  //         open={showDialog}
-  //         onClose={() => {
-  //           setShowDialog(false);
-  //         }}
-  //       >
-  //         <FormEditAvance _id={avance._id} />
-  //       </Dialog>
-  //     </>
-  //   );
-  // };
-  
-  // const FormEditAvance = ({ _id }) => {
-  //   const { form, formData, updateFormData } = useFormData();
-  //   const [editarAvance, { data: dataMutation, loading, error }] = useMutation(EDITAR_AVANCE);
-  
-  //   const submitForm = (e) => {
-  //     e.preventDefault();
-  //     editarAvance({
-  //       variables: {
-  //         _id,
-  //         descripcion: formData,
-  //       },
-  //     });
-  //   };
-  
-  //   useEffect(() => {
-  //     console.log('data mutation', dataMutation);
-  //   }, [dataMutation]);
-  
-  //   return (
-  //     <div className='p-4'>
-  //       <h1 className='font-bold'>Actualizar Avance</h1>
-  //       <form
-  //         ref={form}
-  //         onChange={updateFormData}
-  //         onSubmit={submitForm}
-  //         className='flex flex-col items-center'
-  //       >
-  //         {/* <DropDown label='Estado del Proyecto' name='prespuesto' defaultValue={proyecto.presupuesto} /> */}
-  //         {/* <DropDown label='Estado del Avance' name='estado' defaultValue={avance.descripcion}/> */}
-  //         <ButtonLoading disabled={false} loading={loading} text='Confirmar' />
-  //       </form>
-  //     </div>
-  //   );
-  // };
-  
-  // const Observacion = ({ _id, descripcion }) => {
-  //   return (
-  //     <div className='mx-5 my-4 bg-white p-8 rounded-lg flex-flex-col items-center justify-center shadow-xl'>
-  //       <div className='text-lg font-bold'>{_id}</div>
-  //       <div>{descripcion}</div>
-
-  //         <div>Editar</div>
-
-  //     </div>
-  //   );
-  // };
   
   export default IndexAvance;
   

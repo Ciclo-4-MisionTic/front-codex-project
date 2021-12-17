@@ -24,7 +24,6 @@ import {
 } from 'components/Accordion';
 
 
-
 const IndexProyectos = () => {
   const { data: queryData, loading, error } = useQuery(PROYECTOS);
 
@@ -65,32 +64,44 @@ const AccordionProyecto = ({ proyecto }) => {
   return (
     <>
       <AccordionStyled>
-        <AccordionSummaryStyled expandIcon={<i className='fas fa-chevron-down' />}>
+        <AccordionSummaryStyled
+          expandIcon={<i className='fas fa-chevron-down' />}
+        >
           <div className='flex w-full justify-between'>
-            <div className='uppercase font-semibold text-moradoClaro-light'>
+            <div className='uppercase font-bold text-gray-100 '>
               {proyecto.nombre} - {proyecto.estado}
             </div>
           </div>
         </AccordionSummaryStyled>
         <AccordionDetailsStyled>
           <PrivateComponent roleList={['ADMINISTRADOR']}>
-            <i
-              className='mx-4 fas fa-pen lapizEditarOscuro flex justify-end '
+            <button
+              type='button'
               onClick={() => {
                 setShowDialog(true);
               }}
+            >
+              <i className='mx-4 fas fa-pen text-yellow-600 hover:text-yellow-400' />
+            </button>
+          </PrivateComponent>
+          <PrivateComponent roleList={['LIDER','ESTUDIANTE']}>
+            <InscripcionProyecto
+              idProyecto={proyecto._id}
+              estado={proyecto.estado}
+              inscripciones={proyecto.inscripciones}
             />
           </PrivateComponent>
-          <div><span className='font-bold'>Fecha de Inicio:</span> {proyecto.fechaInicio}</div>
-          <div><span className='font-bold'>Fecha Final:</span> {proyecto.fechaFin}</div>
-          <div><span className='font-bold'>Fase: </span> {proyecto.fase} </div>
-          <div><span className='font-bold'>Presupuesto:</span> {proyecto.presupuesto} </div>
-          <div><span className='font-bold'>Liderado Por:</span> {proyecto.lider.nombre} {proyecto.lider.apellido}</div>
-          
+          <div>Liderado Por: {proyecto.lider.correo}</div>
           <div className='flex'>
-            {proyecto.objetivos.map((objetivo) => {
-              return <Objetivo tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
-            })}
+            {proyecto.objetivos.map((objetivo, index) => (
+              <Objetivo
+                index={index}
+                _id={objetivo._id}
+                idProyecto={proyecto._id}
+                tipo={objetivo.tipo}
+                descripcion={objetivo.descripcion}
+              />
+            ))}
           </div>
         </AccordionDetailsStyled>
       </AccordionStyled>
@@ -154,7 +165,7 @@ const Objetivo = ({ tipo, descripcion }) => {
   );
 };
 
-//estoy tratando de crear algo en proyecto para avances
+//estoy tratando de crear algo en proyecto para avances pero por ahora no funciona
 const InscripcionProyecto = ({ idProyecto, estado, inscripciones }) => {
   const [estadoInscripcion, setEstadoInscripcion] = useState('');
 
@@ -198,7 +209,7 @@ const InscripcionProyecto = ({ idProyecto, estado, inscripciones }) => {
               to={`/avances/${idProyecto}`}
               className='bg-yellow-700 p-2 rounded-lg text-white my-2 hover:bg-yellow-500'
             >
-              Agregar Avance
+              Visualizar  Avance
             </Link>
           )}
         </div>

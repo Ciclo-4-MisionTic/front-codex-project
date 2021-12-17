@@ -10,7 +10,7 @@ import IndexCategory1 from 'pages/category1/Index';
 import Category1 from 'pages/category1/CategoryPage1';
 import IndexUsuarios from 'pages/usuarios';
 import EditarUsuario from 'pages/usuarios/editar';
-import Perfil from 'pages/usuarios/perfil';
+import Perfil from './pages/perfil';
 import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/auth/register';
 import Login from 'pages/auth/login';
@@ -70,13 +70,15 @@ function App() {
   useEffect(() => {
     if (authToken){
       const decode = jwt_decode(authToken);
+      console.log("decode",decode);
       setUserData({
         _id: decode._id,
         nombre: decode.nombre,
         apellido: decode.apellido,
-        indetificacion: decode.indetificacion,
+        identificacion: decode.identificacion,
         correo : decode.correo,
         rol: decode.rol,
+        foto: decode.foto,
       })
     }
   },[authToken]);
@@ -92,7 +94,7 @@ function App() {
                 <Route path='/usuarios' element={<IndexUsuarios />} />
                 <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='/usuarios/verUsuario/:_id' element={<VerUsuario />} />
-                <Route path='/perfil/:_id' element={<Perfil />} />
+                <Route path='/perfil' element={<Perfil />} />
                 <Route path='proyectos' element={<IndexProyectos />} />
                 <Route path='proyectos/nuevo' element={<NuevoProyecto />} />
                 <Route path='/inscripciones' element={<IndexInscripciones />} />

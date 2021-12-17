@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles';
 import { useMutation, useQuery } from '@apollo/client';
 import { PROYECTOS } from 'graphql/proyectos/queries';
 import DropDown from 'components/Dropdown';
-import { Dialog } from '@mui/material';
+import { Dialog, Input } from '@mui/material';
 import { Enum_EstadoProyecto } from 'utils/enums';
 import ButtonLoading from 'components/ButtonLoading';
 import { EDITAR_PROYECTO } from 'graphql/proyectos/mutations';
@@ -73,7 +73,7 @@ const AccordionProyecto = ({ proyecto }) => {
           </div>
         </AccordionSummaryStyled>
         <AccordionDetailsStyled>
-          <PrivateComponent roleList={['ADMINISTRADOR']}>
+          <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER']}>
             <i
               className='mx-4 fas fa-pen lapizEditarOscuro flex justify-end '
               onClick={() => {
@@ -86,6 +86,9 @@ const AccordionProyecto = ({ proyecto }) => {
           <div><span className='font-bold'>Fase: </span> {proyecto.fase} </div>
           <div><span className='font-bold'>Presupuesto:</span> {proyecto.presupuesto} </div>
           <div><span className='font-bold'>Liderado Por:</span> {proyecto.lider.nombre} {proyecto.lider.apellido}</div>
+          <PrivateComponent roleList={['LIDER']}>
+          <div><span className='font-bold'>Avances:</span> {proyecto.avances._id}</div>
+          </PrivateComponent>
           
           <div className='flex'>
             {proyecto.objetivos.map((objetivo) => {
@@ -133,9 +136,15 @@ const FormEditProyecto = ({ _id }) => {
         onSubmit={submitForm}
         className='flex flex-col items-center'
       >
-        {/* <DropDown label='Estado del Proyecto' name='prespuesto' defaultValue={proyecto.presupuesto} /> */}
+        <PrivateComponent roleList={['ADMINISTRADOR']}>
         <DropDown label='Estado del Proyecto' name='estado' options={Enum_EstadoProyecto} />
         <DropDown label='Fase del Proyecto' name='fase' options={Enum_FaseProyecto} />
+        </PrivateComponent>
+        <PrivateComponent roleList={['LIDER']}>
+        <Input label='Nombre del Proyecto' name='nombre' type='text'/>
+        <Input label='Nombre del Proyecto' name='nombre' type='text' required={true} />
+        <Input label='Nombre del Proyecto' name='nombre' type='text' required={true} />
+        </PrivateComponent>
         <ButtonLoading disabled={false} loading={loading} text='Confirmar' />
       </form>
     </div>

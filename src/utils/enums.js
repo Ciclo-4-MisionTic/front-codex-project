@@ -1,3 +1,5 @@
+import PrivateComponent from "components/PrivateComponent";
+
 const Enum_Rol = {
     ADMINISTRADOR: 'Administrador',
     ESTUDIANTE: 'Estudiante',
@@ -25,4 +27,10 @@ const Enum_TipoObjetivo = {
   ESPECIFICO: 'Específico',
 };
 
-  export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo }
+const Enum_EstadoEstudiante = {
+  PENDIENTE: 'Pendiente',
+  AUTORIZADO: 'Autorizado',
+};
+
+
+  export { Enum_Rol, Enum_EstadoUsuario , Enum_EstadoEstudiante, Enum_EstadoProyecto, Enum_FaseProyecto, Enum_TipoObjetivo}

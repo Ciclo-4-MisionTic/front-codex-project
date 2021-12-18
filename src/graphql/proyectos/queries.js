@@ -19,7 +19,11 @@ const PROYECTOS = gql `
         objetivos {
         tipo
         descripcion
-        
+        }
+        avances {
+            _id
+            fecha
+            descripcion
         }
     }
     }

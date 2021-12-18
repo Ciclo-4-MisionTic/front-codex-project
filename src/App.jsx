@@ -10,17 +10,19 @@ import IndexCategory1 from 'pages/category1/Index';
 import Category1 from 'pages/category1/CategoryPage1';
 import IndexUsuarios from 'pages/usuarios';
 import EditarUsuario from 'pages/usuarios/editar';
+import Perfil from './pages/perfil';
 import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/auth/register';
 import Login from 'pages/auth/login';
 import { AuthContext } from 'context/authContext';
 import jwt_decode from 'jwt-decode';
 import IndexProyectos from 'pages/proyectos/Index';
+import IndexAvance from 'pages/avances';
+import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
+import VerUsuario from 'pages/usuarios/verUsuario';
+import IndexInscripciones from 'pages/inscripciones/inscripciones';
 import 'styles/globals.css';
 import 'styles/tabla.css'
-import IndexAvance from 'pages/avances';
-import IndexInscripciones from 'pages/inscripciones';
-import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
 
 
 
@@ -70,13 +72,15 @@ function App() {
   useEffect(() => {
     if (authToken){
       const decode = jwt_decode(authToken);
+      console.log("decode",decode);
       setUserData({
         _id: decode._id,
         nombre: decode.nombre,
         apellido: decode.apellido,
-        indetificacion: decode.indetificacion,
+        identificacion: decode.identificacion,
         correo : decode.correo,
         rol: decode.rol,
+        foto: decode.foto,
       })
     }
   },[authToken]);
@@ -91,6 +95,8 @@ function App() {
                 <Route path='' element={<Index />} />
                 <Route path='/usuarios' element={<IndexUsuarios />} />
                 <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
+                <Route path='/usuarios/verUsuario/:_id' element={<VerUsuario />} />
+                <Route path='/perfil' element={<Perfil />} />
                 <Route path='proyectos' element={<IndexProyectos />} />
                 <Route path='proyectos/nuevo' element={<NuevoProyecto />} />
                 <Route path='/inscripciones' element={<IndexInscripciones />} />

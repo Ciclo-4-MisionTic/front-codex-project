@@ -8,13 +8,15 @@ import { LOGIN } from 'graphql/auth/mutations'
 import { useEffect } from 'react'
 import { useAuth } from 'context/authContext'
 import { useNavigate } from 'react-router-dom'
+import logo from 'media/logo.png';
+
 
 const Login = () => {
     const navigate=useNavigate();
     const {setToken} = useAuth();
     const {form, formData, updateFormData } = useFormData();
 
-    const [login, {data:dataMutation, loading:mutationLoading, error:mutationError}] = 
+    const [login, {data:dataMutation, loading:mutationLoading, error:mutationError}] =
       useMutation(LOGIN)
 
     const submitForm = (e) => {
@@ -34,11 +36,14 @@ const Login = () => {
       }
   },[dataMutation, setToken, navigate])
 
-  
-    
     return (
-      
+
+
+
         <div className='flex flex-col items-center justify-center w-full h-full p-10'>
+
+        <img src={logo} alt='Logo' className='w-40' />
+
         <h1 className='titulo'>Iniciar sesión</h1>
         <form className='flex flex-col' onSubmit={submitForm} onChange={updateFormData} ref={form}>
           <Input name='correo' type='email' label='Correo' required={true} />

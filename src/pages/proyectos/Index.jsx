@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import { styled } from '@mui/material/styles';
 import { useMutation, useQuery } from '@apollo/client';
 import { PROYECTOS } from 'graphql/proyectos/queries';
 import DropDown from 'components/Dropdown';
-import { Dialog } from '@mui/material';
+import { Dialog, Input } from '@mui/material';
 import { Enum_EstadoProyecto } from 'utils/enums';
 import ButtonLoading from 'components/ButtonLoading';
 import { EDITAR_PROYECTO } from 'graphql/proyectos/mutations';
@@ -37,7 +33,7 @@ const IndexProyectos = () => {
     return (
       <div className='p-5'>
         <h1 className='titulo'>Lista de Proyectos</h1>
-        <PrivateComponent roleList={['ADMINISTRADOR','LIDER']}> 
+        <PrivateComponent roleList={['LIDER']}> 
           <div className='self-end my-5 flex justify-end' >
             <button className='buttonCrear'>
               <Link to='/proyectos/nuevo'>Crear nuevo proyecto</Link>
@@ -74,15 +70,13 @@ const AccordionProyecto = ({ proyecto }) => {
           </div>
         </AccordionSummaryStyled>
         <AccordionDetailsStyled>
-          <PrivateComponent roleList={['ADMINISTRADOR']}>
-            <button
-              type='button'
+          <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER']}>
+            <i
+              className='mx-4 fas fa-pen lapizEditarOscuro flex justify-end '
               onClick={() => {
                 setShowDialog(true);
               }}
-            >
-              <i className='mx-4 fas fa-pen text-yellow-600 hover:text-yellow-400' />
-            </button>
+            />
           </PrivateComponent>
           <PrivateComponent roleList={['LIDER','ESTUDIANTE']}>
             <InscripcionProyecto
@@ -91,7 +85,15 @@ const AccordionProyecto = ({ proyecto }) => {
               inscripciones={proyecto.inscripciones}
             />
           </PrivateComponent>
-          <div>Liderado Por: {proyecto.lider.correo}</div>
+          <div><span className='font-bold'>Fecha de Inicio:</span> {proyecto.fechaInicio}</div>
+          <div><span className='font-bold'>Fecha Final:</span> {proyecto.fechaFin}</div>
+          <div><span className='font-bold'>Fase: </span> {proyecto.fase} </div>
+          <div><span className='font-bold'>Presupuesto:</span> {proyecto.presupuesto} </div>
+          <div><span className='font-bold'>Liderado Por:</span> {proyecto.lider.nombre} {proyecto.lider.apellido}</div>
+          <PrivateComponent roleList={['LIDER']}>
+          <div><span className='font-bold'>Avances:</span> {proyecto.avances._id}</div>
+          </PrivateComponent>
+          
           <div className='flex'>
             {proyecto.objetivos.map((objetivo, index) => (
               <Objetivo
@@ -144,9 +146,15 @@ const FormEditProyecto = ({ _id }) => {
         onSubmit={submitForm}
         className='flex flex-col items-center'
       >
-        {/* <DropDown label='Estado del Proyecto' name='prespuesto' defaultValue={proyecto.presupuesto} /> */}
+        <PrivateComponent roleList={['ADMINISTRADOR']}>
         <DropDown label='Estado del Proyecto' name='estado' options={Enum_EstadoProyecto} />
         <DropDown label='Fase del Proyecto' name='fase' options={Enum_FaseProyecto} />
+        </PrivateComponent>
+        <PrivateComponent roleList={['LIDER']}>
+        <Input label='Nombre del Proyecto' name='nombre' type='text'/>
+        <Input label='Nombre del Proyecto' name='nombre' type='text' required={true} />
+        <Input label='Nombre del Proyecto' name='nombre' type='text' required={true} />
+        </PrivateComponent>
         <ButtonLoading disabled={false} loading={loading} text='Confirmar' />
       </form>
     </div>

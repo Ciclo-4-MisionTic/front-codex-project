@@ -22,6 +22,10 @@
   @apply m-4 text-sm text-moradoOscuro-dark font-semibold text-center
 }
 
+.letraMediana {
+  @apply m-4 text-lg text-moradoOscuro-dark font-semibold text-center
+}
+
 .flechaRegresar{
   @apply text-moradoClaro-dark cursor-pointer font-bold text-xl hover:text-moradoOscuro-dark
 }

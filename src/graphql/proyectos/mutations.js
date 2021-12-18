@@ -16,6 +16,7 @@ const EDITAR_PROYECTO = gql`
     $fechaInicio: Date!
     $fechaFin: Date!
     $lider: String!
+    $objetivos: [crearObjetivo]
   ) {
     crearProyecto(
       nombre: $nombre
@@ -23,6 +24,7 @@ const EDITAR_PROYECTO = gql`
       fechaInicio: $fechaInicio
       fechaFin: $fechaFin
       lider: $lider
+      objetivos: $objetivos
     ) {
       _id
     }

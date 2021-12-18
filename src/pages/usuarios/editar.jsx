@@ -103,7 +103,7 @@ const EditarUsuario = () => {
             required={true}
           />
           </PrivateComponent> */}
-          
+
           <PrivateComponent roleList= {["ADMINISTRADOR"]}>
           <DropDown
             label='Estado de la persona:'

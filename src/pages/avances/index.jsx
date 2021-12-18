@@ -91,7 +91,7 @@ const IndexAvance = () => {
       </>
     )}
       </div>
-        <PrivateComponent roleList={['ADMINISTRADOR','LIDER']}> 
+        <PrivateComponent roleList={['ADMINISTRADOR','LIDER']}>
           <Button 
           onClick ={() => {
             setOpenDialog(true);

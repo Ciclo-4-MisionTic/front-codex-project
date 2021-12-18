@@ -141,9 +141,10 @@ const FormEditProyecto = ({ _id }) => {
         <DropDown label='Fase del Proyecto' name='fase' options={Enum_FaseProyecto} />
         </PrivateComponent>
         <PrivateComponent roleList={['LIDER']}>
-        <Input label='Nombre del Proyecto' name='nombre' type='text'/>
-        <Input label='Nombre del Proyecto' name='nombre' type='text' required={true} />
-        <Input label='Nombre del Proyecto' name='nombre' type='text' required={true} />
+          <div>
+            <span> Nombre Del Proyecto </span>
+          <Input label='Nombre del Proyecto' name='nombre' type='text'/>
+          </div>
         </PrivateComponent>
         <ButtonLoading disabled={false} loading={loading} text='Confirmar' />
       </form>

@@ -1,140 +1,191 @@
-import React, { useEffect, useState } from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import { styled } from '@mui/material/styles';
+import React, { useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import { AVANCES } from 'graphql/avances/queries';
-import DropDown from 'components/Dropdown';
-import { Dialog } from '@mui/material';
+import { GET_AVANCES } from 'graphql/avances/queries';
+import { useParams } from 'react-router-dom';
+import { Button, Dialog } from '@mui/material';
+import Input from 'components/Input';
 import ButtonLoading from 'components/ButtonLoading';
-import { EDITAR_AVANCE } from 'graphql/avances/mutations';
 import useFormData from 'hooks/useFormData';
+import { CREAR_AVANCE } from 'graphql/avances/mutations';
+import { useUser } from 'context/userContext';
+import { toast } from 'react-toastify';
 import PrivateComponent from 'components/PrivateComponent';
-
-
-const AccordionStyled = styled((props) => <Accordion {...props} />)(({ theme }) => ({
-  backgroundColor: '#8C515C',
-}));
-const AccordionSummaryStyled = styled((props) => <AccordionSummary {...props} />)(({ theme }) => ({
-  backgroundColor: '#8C515C',
-}));
-const AccordionDetailsStyled = styled((props) => <AccordionDetails {...props} />)(({ theme }) => ({
-  backgroundColor: '#D9BFC4',
-}));
+import { CREAR_OBSERVACION } from 'graphql/avances/mutations';
+import { nanoid } from 'nanoid';
 
 const IndexAvance = () => {
-    const { data: queryData, loading, error } = useQuery(AVANCES);
+    const { projectid } = useParams();
+    const [openDialog, setOpenDialog] = useState(false);
+
+
+    // const { data: queryData, loading, error } = useQuery(AVANCES);
   
-    useEffect(() => {
-      console.log('datos proyecto', queryData);
-    }, [queryData]);
+    // useEffect(() => {
+    //   console.log('datos proyecto', queryData);
+    // }, [queryData]);
+    const { data, loading } = useQuery(GET_AVANCES, {
+      variables: {
+        project: projectid,
+      },
+    });
   
     if (loading) return <div>Cargando...</div>;
   
-    if (queryData.Avances) {
+    // if (queryData.Avances) {
       return (
-        <div className='p-10'>
-          {queryData.Avances.map((avance) => {
-            return <AccordionAvance avance={avance} />;
-          })}
+        <div className='flex flex-col p-10 items-center w-full'>
+          <h1 className='text-2xl font-bold text-gray-900 my-2'>
+            Avances para el proyecto {projectid}
+          </h1>
+          <button
+            onClick={() => setOpenDialog(true)}
+            className='flex-end bg-indigo-500'
+            type='button'
+          >
+            Crear nuevo avance
+          </button>
+          {data.Avances.length === 0 ? (
+            <span>No tienes avances para este proyecto</span>
+          ) : (
+            data.Avances.map((avance) => <Avance avance={avance} />)
+          )}
+          <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
+            <CrearAvance proyecto={projectid} setOpenDialog={setOpenDialog} />
+          </Dialog>
         </div>
       );
-    }
-  
-    return <></>;
   };
-  
-  const AccordionAvance = ({ avance}) => {
-    const [showDialog, setShowDialog] = useState(false);
-    return (
-      <>
-        <AccordionStyled>
-          <AccordionSummaryStyled expandIcon={<i className='fas fa-chevron-down' />}>
-            <div className='flex w-full justify-between'>
-              <div className='uppercase font-semibold text-moradoClaro-light'>
-               Avance de {avance.proyecto.nombre} 
-              </div>
-            </div>
-          </AccordionSummaryStyled>
-          <AccordionDetailsStyled>
-        
-              <i
-                className='mx-4 fas fa-pen lapizEditarOscuro flex justify-end '
-                onClick={() => {
-                  setShowDialog(true);
-                }}
-              />
 
-            <div><span className='font-bold'>ID:</span> {avance._id}</div>
-            <div><span className='font-bold'>Fecha:</span> {avance.fecha}</div>
-            <div><span className='font-bold'>Descripcion: </span> {avance.descripcion} </div>
-  
-            <div className='flex'>
-              {avance.observaciones.map((observacion) => {
-                return <Observacion _id={observacion._id} descripcion={observacion.descripcion} />;
-              })}
-            </div>
-          </AccordionDetailsStyled>
-        </AccordionStyled>
-        <Dialog
-          open={showDialog}
-          onClose={() => {
-            setShowDialog(false);
-          }}
-        >
-          <FormEditAvance _id={avance._id} />
-        </Dialog>
+  const Avance = ({ avance }) => {
+    const[openDialog,setOpenDialog]=useState(false);
+    return (
+      <div className='flex flex-col bg-gray-200 shadow-lg p-3 rounded-xl m-2'>
+        <span>
+          <strong>Avance:</strong> {avance.descripcion}
+        </span>
+        <span>
+          <strong>Fecha: </strong>
+          {avance.fecha}
+        </span>
+        {/* <span>{avance.observaciones.length === 0 && 'Sin comentarios'}</span> */}
+        <div className='flex my-4'>{avance.observaciones.length === 0 ?(<span>Sin observaciones</span>
+    ):(
+      <>
+      {avance.observaciones.map((obs,index)=>{
+        return (
+          <div
+          key={nanoid()}
+          className='bg-white w-32 m-2 p-2 rounded-lg shadow-lg flex-flex-col '
+          >
+            <span>
+        {index+1},{obs}
+        </span>
+        <div className='flex-items-center justify-center my-2'>
+        <i className='fas fa-pen mx-2'/>
+        <i className='fas fa-trash mx-2'/>
+        </div>
+        
+        </div>
+        );
+      })}
       </>
+    )}
+      </div>
+        <PrivateComponent roleList={['ADMINISTRADOR','LIDER']}> 
+          <Button 
+          onClick ={() => {
+            setOpenDialog(true);
+          }}
+            className='bg-indigo-500 p3  my-2  rounded-lg  w-48 text-white hover-bg-indigo-700' type="button">Agregar observacion</Button>
+          </PrivateComponent>
+          <Dialog>
+            open ={openDialog}
+            onClose ={() => {
+              setOpenDialog(false);
+            }}
+            <AgregarObservacion _id={avance._id} setOpenDialog={setOpenDialog} />
+          </Dialog>
+       
+      </div>
     );
   };
-  
-  const FormEditAvance = ({ _id }) => {
-    const { form, formData, updateFormData } = useFormData();
-    const [editarAvance, { data: dataMutation, loading, error }] = useMutation(EDITAR_AVANCE);
-  
-    const submitForm = (e) => {
-      e.preventDefault();
-      editarAvance({
-        variables: {
-          _id,
-          descripcion: formData,
-        },
+
+  const AgregarObservacion =({_id,setOpenDialog}) =>{
+    const {formData,form,updateFormData}=useFormData();
+    const [crearObservacion,{loading}]=useMutation(CREAR_OBSERVACION,
+      {refetchQueries:[GET_AVANCES],
       });
+
+    const submitForm =(e) => {
+      e.preventDefault()
+      crearObservacion({
+        variables:{
+          _id,  
+          ...formData
+        },
+    }).then(() => {
+      toast.success("observación agregada exitosamente");
+      setOpenDialog(false)
+    })
+    .catch(() => {
+      toast.error("error agregando observación");
+    });
     };
-  
-    useEffect(() => {
-      console.log('data mutation', dataMutation);
-    }, [dataMutation]);
   
     return (
       <div className='p-4'>
-        <h1 className='font-bold'>Actualizar Avance</h1>
-        <form
-          ref={form}
-          onChange={updateFormData}
-          onSubmit={submitForm}
-          className='flex flex-col items-center'
-        >
-          {/* <DropDown label='Estado del Proyecto' name='prespuesto' defaultValue={proyecto.presupuesto} /> */}
-          {/* <DropDown label='Estado del Avance' name='estado' defaultValue={avance.descripcion}/> */}
-          <ButtonLoading disabled={false} loading={loading} text='Confirmar' />
+      <h1 className='text-2x1 fond-bold text-gray-900'>
+        Agregar una observacion
+      </h1>
+      <form ref={form} onChange={updateFormData} onSubmit={submitForm}>
+        {/* <input name="observacion" type="text" required={true}/> */}
+        <div className='flex-felx-col'>
+      <textarea name="observacion" className='input'/>
+        <ButtonLoading text="Agregar observacion" loading={loading} disabled={Object.keys(formData).length===0}
+        />
+        </div>
+      </form>
+    </div>
+    );
+  };
+  const CrearAvance = ({ proyecto, setOpenDialog }) => {
+    const { userData } = useUser();
+    const { form, formData, updateFormData } = useFormData();
+  
+    const [crearAvance, { loading }] = useMutation(CREAR_AVANCE, {
+      refetchQueries: [GET_AVANCES],
+    });
+  
+    const submitForm = (e) => {
+      e.preventDefault();
+  
+      crearAvance({
+        variables: { ...formData, proyecto, creadoPor: userData._id },
+      })
+        .then(() => {
+          toast.success('avance creado con exito');
+          setOpenDialog(false);
+        })
+        .catch(() => {
+          toast.error('error creando el avance');
+        });
+    };
+    return (
+      <div className='p-4'>
+        <h1 className='text-2xl font-bold text-gray-900'>Crear Nuevo Avance</h1>
+        <form ref={form} onChange={updateFormData} onSubmit={submitForm}>
+          <Input name='descripcion' label='Descripción' type='text' />
+          <Input name='fecha' label='Fecha' type='date' />
+          <ButtonLoading
+            text='Crear Avance'
+            loading={loading}
+            disabled={Object.keys(formData).length === 0}
+          />
         </form>
       </div>
     );
   };
-  
-  const Observacion = ({ _id, descripcion }) => {
-    return (
-      <div className='mx-5 my-4 bg-white p-8 rounded-lg flex-flex-col items-center justify-center shadow-xl'>
-        <div className='text-lg font-bold'>{_id}</div>
-        <div>{descripcion}</div>
-
-          <div>Editar</div>
-
-      </div>
-    );
-  };
+ 
   
   export default IndexAvance;
   

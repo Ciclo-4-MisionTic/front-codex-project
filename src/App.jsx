@@ -24,6 +24,8 @@ import IndexInscripciones from 'pages/inscripciones/inscripciones';
 import 'styles/globals.css';
 import 'styles/tabla.css'
 
+
+
 // import PrivateRoute from 'components/PrivateRoute';
 
 // const httpLink = createHttpLink({
@@ -98,7 +100,7 @@ function App() {
                 <Route path='proyectos' element={<IndexProyectos />} />
                 <Route path='proyectos/nuevo' element={<NuevoProyecto />} />
                 <Route path='/inscripciones' element={<IndexInscripciones />} />
-                <Route path='/avances' element={<IndexAvance />} />
+                <Route path='/avances/:projectid' element={<IndexAvance />} />
                 <Route path='page2' element={<Page2 />} />
                 <Route path='category1' element={<IndexCategory1 />} />
                 <Route path='category1/page1' element={<Category1 />} />

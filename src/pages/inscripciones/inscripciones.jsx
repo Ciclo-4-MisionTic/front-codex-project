@@ -21,8 +21,8 @@ const IndexInscripciones = () => {
   return (
     <PrivateRoute roleList={['ADMINISTRADOR', 'LIDER']}>
       <div className='p-10'>
-        <div>Pagina de inscripciones</div>
-        <div className='my-4'>
+        <div className='titulo' >Pagina de inscripciones</div>
+        <div className='my-4 uppercase font-semibold text-moradoClaro-light'>
           <AccordionInscripcion
             titulo='Inscripciones aprobadas'
             data={data.Inscripciones.filter((el) => el.estado === 'ACEPTADO')}

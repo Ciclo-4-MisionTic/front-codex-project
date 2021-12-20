@@ -18,11 +18,13 @@ import { AuthContext } from 'context/authContext';
 import jwt_decode from 'jwt-decode';
 import IndexProyectos from 'pages/proyectos/Index';
 import IndexAvance from 'pages/avances';
+import IndexInscripciones from 'pages/inscripciones';
 import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
 import VerUsuario from 'pages/usuarios/verUsuario';
-import IndexInscripciones from 'pages/inscripciones/inscripciones';
 import 'styles/globals.css';
 import 'styles/tabla.css'
+
+
 
 // import PrivateRoute from 'components/PrivateRoute';
 
@@ -98,7 +100,7 @@ function App() {
                 <Route path='proyectos' element={<IndexProyectos />} />
                 <Route path='proyectos/nuevo' element={<NuevoProyecto />} />
                 <Route path='/inscripciones' element={<IndexInscripciones />} />
-                <Route path='/avances' element={<IndexAvance />} />
+                <Route path='/avances/:projectid' element={<IndexAvance />} />
                 <Route path='page2' element={<Page2 />} />
                 <Route path='category1' element={<IndexCategory1 />} />
                 <Route path='category1/page1' element={<Category1 />} />

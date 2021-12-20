@@ -8,6 +8,7 @@ import { uploadFormData } from 'utils/uploadFormData';
 import { useUser } from 'context/userContext';
 import { GET_USUARIO } from 'graphql/usuarios/queries';
 import { toast } from 'react-toastify';
+import {Link } from 'react-router-dom';
 
 const EditarProfile = () => {
   const [editFoto, setEditFoto] = useState(false);
@@ -54,6 +55,11 @@ const EditarProfile = () => {
 
   return (
     <div className='p-10 flex flex-col items-center justify-center w-full'>
+      <div className='self-start' >
+                <Link to='/perfil'>
+                <i className='fas fa-arrow-left flechaRegresar' />
+                </Link>
+              </div>
       <h1 className='titulo'>Editar Perfil</h1>
       <form className='letraMediana' ref={form} onChange={updateFormData} onSubmit={submitForm}>
         <Input

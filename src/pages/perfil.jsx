@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import ButtonLoading from 'components/ButtonLoading';
-import Input from 'components/Input';
+import InputLeer from 'components/InputLeer';
 import { EDITAR_PERFIL } from 'graphql/usuarios/mutations';
 import useFormData from 'hooks/useFormData';
 import { uploadFormData } from 'utils/uploadFormData';
@@ -57,32 +56,31 @@ const Profile = () => {
     <div className='p-10 flex flex-col items-center justify-center w-full'>
       <h1 className='titulo'>Perfil del usuario</h1>
       <form className='letraMediana' ref={form} onChange={updateFormData} onSubmit={submitForm}>
-        <Input
+        <InputLeer
           defaultValue={queryData.Usuario.nombre}
           label='Nombre'
           name='nombre'
           type='text'
-          required
+          readonly
         />
-        <Input
+        <InputLeer
           defaultValue={queryData.Usuario.apellido}
           label='Apellido'
           name='apellido'
           type='text'
-          required
+          readonly
         />
-        <Input
+        <InputLeer
           defaultValue={queryData.Usuario.identificacion}
           label='Identificación'
           name='identificacion'
           type='text'
-          required
+          value="Dato de solo lectura" readonly
         />
-        <div className='p-10 flex flex-col items-center justify-center w-full' >
-          <span className='letraMediana' >Estado : {queryData.Usuario.estado}</span>
-          <span className='letraMediana' >Rol: {queryData.Usuario.rol}</span>
+        <div className='p-10 flex flex-col items-center justify-center w-full'>
+          <span className='subTitulo' >Estado : {queryData.Usuario.estado}</span>
+          <span className='subTitulo' >Rol: {queryData.Usuario.rol}</span>
         </div>
-        
         {/* {queryData.Usuario.foto && !editFoto ? (
           <div className='flex flex-col items-center'>
             <img

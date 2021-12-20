@@ -71,8 +71,12 @@ const AccordionProyecto = ({ proyecto }) => {
         </AccordionSummaryStyled>
         <AccordionDetailsStyled>
           <PrivateComponent roleList={['ADMINISTRADOR', 'LIDER']}>
-            <i
-              className='mx-4 fas fa-pen lapizEditarOscuro flex justify-end' />
+          <i
+              className='mx-4 fas fa-pen lapizEditarOscuro flex justify-end '
+              onClick={() => {
+                setShowDialog(true);
+              }}
+            />
           </PrivateComponent>
           <PrivateComponent roleList={['LIDER','ESTUDIANTE']}>
             <InscripcionProyecto
@@ -147,10 +151,10 @@ const FormEditProyecto = ({ _id }) => {
         <DropDown label='Fase del Proyecto' name='fase' options={Enum_FaseProyecto} />
         </PrivateComponent>
         <PrivateComponent roleList={['LIDER']}>
-          <div>
+          <div className='flex flex-col align-center p-3 items-center'>
           <span> Nombre Del Proyecto </span>
           <Input label='Nombre del Proyecto' name='nombre' type='text'/>
-          <span> Presupuesto </span>
+          <span className='mt-5'> Presupuesto </span>
           <Input label='Presupuesto' name='presupuesto' type='text'/>
           </div>
         </PrivateComponent>

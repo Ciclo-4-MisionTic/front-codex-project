@@ -78,6 +78,11 @@ const Profile = () => {
           type='text'
           required
         />
+        <div className='p-10 flex flex-col items-center justify-center w-full' >
+          <span className='letraMediana' >Estado : {queryData.Usuario.estado}</span>
+          <span className='letraMediana' >Rol: {queryData.Usuario.rol}</span>
+        </div>
+        
         {/* {queryData.Usuario.foto && !editFoto ? (
           <div className='flex flex-col items-center'>
             <img

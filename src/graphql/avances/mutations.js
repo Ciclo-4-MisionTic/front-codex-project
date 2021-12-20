@@ -32,7 +32,6 @@ const CREAR_AVANCE = gql`
     observaciones  
     }
   }
-
 `;
 
 

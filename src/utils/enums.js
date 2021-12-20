@@ -1,4 +1,3 @@
-import PrivateComponent from "components/PrivateComponent";
 
 const Enum_Rol = {
     ADMINISTRADOR: 'Administrador',

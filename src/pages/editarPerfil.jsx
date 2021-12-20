@@ -8,9 +8,8 @@ import { uploadFormData } from 'utils/uploadFormData';
 import { useUser } from 'context/userContext';
 import { GET_USUARIO } from 'graphql/usuarios/queries';
 import { toast } from 'react-toastify';
-import { Link } from 'react-router-dom';
 
-const Profile = () => {
+const EditarProfile = () => {
   const [editFoto, setEditFoto] = useState(false);
   const { form, formData, updateFormData } = useFormData();
   const { userData, setUserData } = useUser();
@@ -55,7 +54,7 @@ const Profile = () => {
 
   return (
     <div className='p-10 flex flex-col items-center justify-center w-full'>
-      <h1 className='titulo'>Perfil del usuario</h1>
+      <h1 className='titulo'>Editar Perfil</h1>
       <form className='letraMediana' ref={form} onChange={updateFormData} onSubmit={submitForm}>
         <Input
           defaultValue={queryData.Usuario.nombre}
@@ -78,11 +77,6 @@ const Profile = () => {
           type='text'
           required
         />
-        <div className='p-10 flex flex-col items-center justify-center w-full' >
-          <span className='letraMediana' >Estado : {queryData.Usuario.estado}</span>
-          <span className='letraMediana' >Rol: {queryData.Usuario.rol}</span>
-        </div>
-        
         {/* {queryData.Usuario.foto && !editFoto ? (
           <div className='flex flex-col items-center'>
             <img
@@ -109,20 +103,15 @@ const Profile = () => {
               Cancelar
             </button>
           </div>
-        )}
+        )} */}
         <ButtonLoading
           text='Confirmar'
           loading={loadingMutation}
           disabled={false}
-        /> */}
-        <button className='buttonCrear items-center justify-center'>
-          <Link to={`/perfil/editarPerfil`}>
-            Editar Perfil
-          </Link>
-        </button>
+        />
       </form>
     </div>
   );
 };
 
-export default Profile;
+export default EditarProfile;

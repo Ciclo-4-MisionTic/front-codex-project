@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const uploadFormData = async(formData) => {
+const uploadFormData = async (formData) => {
   Object.keys(formData).map(async (field) => {
     if (Object.prototype.isPrototypeOf.call(File.prototype, formData[field])) {
       const dt = new FormData();

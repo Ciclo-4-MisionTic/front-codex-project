@@ -7,7 +7,7 @@ import { setContext } from '@apollo/client/link/context';
 import Index from 'pages/Index';
 import IndexUsuarios from 'pages/usuarios';
 import EditarUsuario from 'pages/usuarios/editar';
-import Perfil from './pages/perfil';
+import Profile from './pages/perfil';
 import AuthLayout from 'layouts/AuthLayout';
 import Register from 'pages/auth/register';
 import Login from 'pages/auth/login';
@@ -15,13 +15,12 @@ import { AuthContext } from 'context/authContext';
 import jwt_decode from 'jwt-decode';
 import IndexProyectos from 'pages/proyectos/Index';
 import IndexAvance from 'pages/avances';
-import IndexInscripciones from 'pages/inscripciones';
 import NuevoProyecto from 'pages/proyectos/NuevoProyecto';
 import VerUsuario from 'pages/usuarios/verUsuario';
+import IndexInscripciones from 'pages/inscripciones/inscripciones';
+import EditarProfile from './pages/editarPerfil';
 import 'styles/globals.css';
 import 'styles/tabla.css'
-
-
 
 // import PrivateRoute from 'components/PrivateRoute';
 
@@ -93,7 +92,8 @@ function App() {
                 <Route path='/usuarios' element={<IndexUsuarios />} />
                 <Route path='/usuarios/editar/:_id' element={<EditarUsuario />} />
                 <Route path='/usuarios/verUsuario/:_id' element={<VerUsuario />} />
-                <Route path='/perfil' element={<Perfil />} />
+                <Route path='/perfil' element={<Profile />} />
+                <Route path='/perfil/editarperfil/' element={<EditarProfile />} />
                 <Route path='proyectos' element={<IndexProyectos />} />
                 <Route path='proyectos/nuevo' element={<NuevoProyecto />} />
                 <Route path='/inscripciones' element={<IndexInscripciones />} />
